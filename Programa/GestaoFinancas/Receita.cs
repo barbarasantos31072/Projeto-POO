@@ -2,9 +2,9 @@ using System;
 
 namespace ProjetoFinal.Classes
 {
-    public class Receitas
+    public class Receita
     {
-        // Atributos bom dia
+        // Atributos
         public int Id { get; set; }
         public string Descricao { get; set; }
         public float Valor { get; set; }
@@ -12,7 +12,7 @@ namespace ProjetoFinal.Classes
         public string Categoria { get; set; }
 
         // Construtor
-        public Receitas(int id, string descricao, float valor, DateTime data, string categoria)
+        public Receita(int id, string descricao, float valor, DateTime data, string categoria)
         {
             Id = id;
             Descricao = descricao;
@@ -21,7 +21,7 @@ namespace ProjetoFinal.Classes
             Categoria = categoria;
         }
 
-        // Método
+        // Métodos
         public bool ValidarValor()
         {
             // retorna true se o valor for positivo

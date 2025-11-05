@@ -1,0 +1,14 @@
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\bin\Debug\net9.0\GestaoFinancas.exe
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\bin\Debug\net9.0\GestaoFinancas.deps.json
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\bin\Debug\net9.0\GestaoFinancas.runtimeconfig.json
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\bin\Debug\net9.0\GestaoFinancas.dll
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\bin\Debug\net9.0\GestaoFinancas.pdb
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.AssemblyInfoInputs.cache
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.AssemblyInfo.cs
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.csproj.CoreCompileInputs.cache
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.dll
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\refint\GestaoFinancas.dll
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.pdb
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\GestaoFinancas.genruntimeconfig.cache
+C:\Users\Bárbara\Documents\TDM\2ºAno 1ºSemestre\POO\Projeto POO\GestaoFinancas\obj\Debug\net9.0\ref\GestaoFinancas.dll
