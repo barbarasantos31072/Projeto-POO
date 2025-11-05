@@ -2,7 +2,7 @@ using System;
 
 namespace ProjetoFinal.Classes
 {
-    public class Despesas
+    public class Despesa
     {
         // Atributos
         public int Id { get; set; }
@@ -12,13 +12,13 @@ namespace ProjetoFinal.Classes
         public string Categoria { get; set; }
 
         // Construtor
-        public Despesas(int id, string descricao, float valor, DateTime data, string categoria)
+        public Despesa(int id, string descricao, float valor, DateTime data, string categoria)
         {
             Id = id;
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            Categoria = categoria; // teste teste 
+            Categoria = categoria;
         }
 
         // Método
