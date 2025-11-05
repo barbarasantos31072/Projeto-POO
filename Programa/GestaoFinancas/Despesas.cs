@@ -18,7 +18,7 @@ namespace ProjetoFinal.Classes
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            Categoria = categoria;
+            Categoria = categoria; // teste teste 
         }
 
         // Método
