@@ -8,15 +8,7 @@ namespace ProjetoFinal.Classes
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Perfil { get; set; }
-
-        public void Utilizador (SistemaGestaoFinancas sistema, Utilizador utilizador)
-        {
-            Console.WriteLine($"{Nome} está a registar uma nova despesa...");
-            sistema.AnalisarDespesa(despesa);
-        }
-    
-
+        public string Perfil { get; set; }       
 
             public Utilizador(string nome, string email, string password, string perfil)
         {
