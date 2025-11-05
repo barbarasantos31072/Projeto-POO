@@ -2,9 +2,9 @@ using System;
 
 namespace ProjetoFinal.Classes
 {
-    public class Despesa
+    public class Despesas
     {
-        // Atributos
+        // Atributos alow alow
         public int Id { get; set; }
         public string Descricao { get; set; }
         public float Valor { get; set; }
@@ -12,13 +12,13 @@ namespace ProjetoFinal.Classes
         public string Categoria { get; set; }
 
         // Construtor
-        public Despesa(int id, string descricao, float valor, DateTime data, string categoria)
+        public Despesas(int id, string descricao, float valor, DateTime data, string categoria)
         {
             Id = id;
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            Categoria = categoria;
+            Categoria = categoria; // teste teste 
         }
 
         // Método
