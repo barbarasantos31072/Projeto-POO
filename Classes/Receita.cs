@@ -4,7 +4,7 @@ namespace ProjetoFinal.Classes
 {
     public class Receitas
     {
-        // Atributos
+        // Atributos bom dia
         public int Id { get; set; }
         public string Descricao { get; set; }
         public float Valor { get; set; }
