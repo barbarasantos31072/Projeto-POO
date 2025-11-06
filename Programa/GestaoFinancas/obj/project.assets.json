@@ -8,31 +8,23 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\adria\\.nuget\\packages\\": {},
+    "C:\\Users\\Bárbara\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
       "projectName": "GestaoFinancas",
       "projectPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
       "packagesPath": "C:\\Users\\Bárbara\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\adria\\Downloads\\2º ano s1\\POO\\poo proj\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
-      "projectName": "GestaoFinancas",
-      "projectPath": "C:\\Users\\adria\\Downloads\\2º ano s1\\POO\\poo proj\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
-      "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adria\\Downloads\\2º ano s1\\POO\\poo proj\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\",
->>>>>>> 0f90693ea82dc5954df2fbd4d347e3e25541fd16
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bárbara\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -59,7 +51,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -80,8 +72,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }
