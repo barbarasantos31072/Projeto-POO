@@ -4,5 +4,12 @@
   "success": true,
   "projectFilePath": "C:\\Users\\Win11\\Desktop\\Projeto-POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\adria\\Downloads\\2º ano s1\\POO\\poo proj\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
