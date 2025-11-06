@@ -2,13 +2,14 @@ namespace ProjetoFinal.Classes
 {
     public class Administrador : Utilizador
     {
-        public string CodigoAcesso { get; set; }
+        //Atributos
+         public string CodigoAcesso { get; set; }
 
-        // O construtor chama o construtor da classe base (Utilizador)
-        public Administrador(string nome, string email, string password, string codigoAcesso)
+        //Construção
+        public Administrador(string nome, string email, string password, string codigoacesso)
             : base(nome, email, password, "Administrador")
         {
-            CodigoAcesso = codigoAcesso;
+            CodigoAcesso = codigoacesso;
         }
 
         public void GerirUtilizadores()
