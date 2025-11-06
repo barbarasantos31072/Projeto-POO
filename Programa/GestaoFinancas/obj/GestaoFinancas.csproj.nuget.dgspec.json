@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\GestaoFinancas\\GestaoFinancas.csproj": {}
+    "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\GestaoFinancas\\GestaoFinancas.csproj": {
+    "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\GestaoFinancas\\GestaoFinancas.csproj",
+        "projectUniqueName": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
         "projectName": "GestaoFinancas",
-        "projectPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\GestaoFinancas\\GestaoFinancas.csproj",
+        "projectPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
         "packagesPath": "C:\\Users\\Bárbara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\GestaoFinancas\\obj\\",
+        "outputPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

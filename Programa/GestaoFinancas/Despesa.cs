@@ -2,17 +2,17 @@ using System;
 
 namespace ProjetoFinal.Classes
 {
-    public class Despesas
+    public class Despesa
     {
-        // Atributos alow alow
+        // Atributos
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public float Valor { get; set; }
+        public decimal Valor { get; set; }
         public DateTime Data { get; set; }
         public string Categoria { get; set; }
 
         // Construtor
-        public Despesas(int id, string descricao, float valor, DateTime data, string categoria)
+        public Despesas(int id, string descricao, decimal valor, DateTime data, string categoria)
         {
             Id = id;
             Descricao = descricao;
