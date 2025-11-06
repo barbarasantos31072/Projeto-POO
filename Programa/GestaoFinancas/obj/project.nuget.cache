@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "71CKflCXnaw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
+=======
+  "dgSpecHash": "7qM9+DolcKU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\adria\\Downloads\\2º ano s1\\POO\\poo proj\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
+>>>>>>> 0f90693ea82dc5954df2fbd4d347e3e25541fd16
   "expectedPackageFiles": [],
   "logs": []
 }
