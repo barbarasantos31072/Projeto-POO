@@ -17,7 +17,7 @@ public class Categoria
         // Método criarcategoria
         public static Categoria CriarCategoria(int id, string nomecat, string tipo)
         {
-            return new Categoria(id, nomecat, tipo);
+         return new Categoria(id, nomecat, tipo);
         }
  
 }
