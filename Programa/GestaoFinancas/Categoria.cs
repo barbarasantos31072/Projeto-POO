@@ -17,7 +17,7 @@ namespace ProjetoFinal.Classes
             Tipo = tipo;
         }
 
-        // Método criarcategoria
+        // Método criar categoria
         public static Categoria CriarCategoria(int id, string nomecat, string tipo)
         {
             return new Categoria(id, nomecat, tipo);

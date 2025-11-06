@@ -20,7 +20,7 @@ namespace ProjetoFinal.Classes
         }
         public void MostrarInfo()
         {
-            Console.WriteLine($"Nome: {Nome}, Email: {Email}, Perfil: {Perfil}");
+            Console.WriteLine($"Nome: {Nome}, Email: {Email}");
         }
     }
 }
