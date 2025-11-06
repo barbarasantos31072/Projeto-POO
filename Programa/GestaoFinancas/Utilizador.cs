@@ -17,5 +17,9 @@ namespace ProjetoFinal.Classes
             Password = password;
             Perfil = perfil;
         }
-    } 
+        public void MostrarInfo()
+        {
+            Console.WriteLine($"Nome: {Nome}, Email: {Email}, Perfil: {Perfil}");
+        }
+    }
 }
