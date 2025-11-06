@@ -1,0 +1,33 @@
+============Despesas===========
+@startuml
+==Processo==
+actor Utilizador
+SistemaGestaoFinanças -> Despesa : Analisar despesa()
+activate Despesa
+Despesa -> Categoria : Tipo de despesa()
+deactivate Despesa
+activate Categoria
+Categoria -> Valor : Validar()
+deactivate Categoria
+activate Valor
+Valor -> Utilizador : valor valido()
+deactivate Valor
+
+==Despesas Informaçao==
+Utilizador -> SistemaGestaoFinanças : despesa()
+activate SistemaGestaoFinanças
+SistemaGestaoFinanças -> Despesa : id()
+SistemaGestaoFinanças -> Despesa : descriçao()
+SistemaGestaoFinanças -> Despesa : valor()
+SistemaGestaoFinanças -> Despesa : data()
+SistemaGestaoFinanças -> Despesa : categoria()
+deactivate SistemaGestaoFinanças
+
+activate Despesa
+Despesa -> Categoria : id()
+Despesa -> Categoria : descriçao()
+Despesa -> Categoria : valor()
+Despesa -> Categoria : data()
+Despesa -> Categoria : categoria()
+deactivate Despesa
+@enduml
