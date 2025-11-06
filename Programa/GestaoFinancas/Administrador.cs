@@ -11,7 +11,7 @@ namespace ProjetoFinal.Classes
             CodigoAcesso = codigoacesso;
         }
 
-        public void GerirUtilizadores() my potato
+        public void GerirUtilizadores()
         {
             Console.WriteLine($"{Nome} está a gerir os utilizadores...");
         }
