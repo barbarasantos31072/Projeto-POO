@@ -5,7 +5,6 @@ namespace ProjetoFinal.Classes
         //Atributos
          public string CodigoAcesso { get; set; }
 
-        //Construção
         public Administrador(string nome, string email, string password, string codigoacesso)
             : base(nome, email, password, "Administrador")
         {
