@@ -2,14 +2,22 @@ using System;
 using System.Data.Common;
 public class Categoria
 {
-    public int id { get; set; }
-    public string descrição { get; set; }
-    public float valor { get; set; }
-    public DateTime data { get; set; }
-    public string categoria { get; set; }
+    public int Id { get; set; }
+    public string NomeCategoria { get; set; }
+    public string Tipo { get; set; }
 
-    // Método
+    // Construtor
+        public Categoria(int id, string nomecat, string tipo)
+        {
+           Id = id;
+           NomeCategoria = nomecat;
+           Tipo = tipo;
+        }
 
-    public 
+        // Método criarcategoria
+        public static Categoria CriarCategoria(int id, string nomecat, string tipo)
+        {
+         return new Categoria(id, nomecat, tipo);
+        }
  
 }

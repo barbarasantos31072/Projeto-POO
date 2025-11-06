@@ -12,7 +12,7 @@ namespace ProjetoFinal.Classes
         public string Categoria { get; set; }
 
         // Construtor
-        public Despesas(int id, string descricao, decimal valor, DateTime data, string categoria)
+        public Despesa (int id, string descricao, decimal valor, DateTime data, string categoria)
         {
             Id = id;
             Descricao = descricao;
