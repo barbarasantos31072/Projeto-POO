@@ -57,7 +57,7 @@ namespace ProjetoFinal.Classes
             Console.Write("Password: ");
             string password = Console.ReadLine() ?? "";
 
-            Utilizador novo = new Utilizador(utilizadores.Count + 1, nome, email, password, "normal");
+            Utilizador novo = new Utilizador(utilizadores.Count + 1, nome, email, password);
             utilizadores.Add(novo);
             Console.WriteLine("✅ Utilizador criado com sucesso!");
         }
