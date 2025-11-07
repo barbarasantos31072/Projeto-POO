@@ -1,0 +1,25 @@
+==============Categoria==============
+@startuml
+==Processo==
+actor Utilizador
+SistemaGestaoFinanças -> Categoria : Analisar transaçao()
+activate Categoria
+Categoria -> Tipo : Tipo de categoria()
+deactivate Categoria
+activate Tipo
+Tipo -> Criar : Criar()
+deactivate Tipo
+activate Criar
+Criar -> Utilizador : categoria criada()
+deactivate Criar
+
+==Categoria Informaçao==
+Utilizador -> SistemaGestaoFinanças : categoria()
+activate SistemaGestaoFinanças
+SistemaGestaoFinanças -> Categoria : id()
+SistemaGestaoFinanças -> Categoria : tipo()
+SistemaGestaoFinanças -> Categoria : categoria()
+deactivate SistemaGestaoFinanças
+
+
+@enduml
