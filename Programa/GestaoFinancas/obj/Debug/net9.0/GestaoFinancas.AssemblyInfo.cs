@@ -14,10 +14,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52fe5f7a8897b1ebf513f7b5da44324ed9a3c750")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bc5174ab313b9c5c1bc29cdb6317650218d53de")]
 >>>>>>> 1df671e21291b5d2430e4f14324d1d9520172aa8
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1df671e21291b5d2430e4f14324d1d9520172aa8")]
+>>>>>>> c09b416af74c92e807885d111fcf7cd360850250
 [assembly: System.Reflection.AssemblyProductAttribute("GestaoFinancas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GestaoFinancas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
