@@ -1,0 +1,22 @@
+
+
+
+============SistemaGestãoFinanças=========
+@startuml
+actor Utilizador
+
+Utilizador -> SistemaGestaoFinanças : gerarRelatorio(tipo, periodo)
+activate SistemaGestaoFinanças
+
+SistemaGestaoFinanças -> Receita : obterReceitas(periodo)
+Receita --> SistemaGestaoFinanças : listaReceitas
+
+SistemaGestaoFinanças -> Despesa : obterDespesas(periodo)
+Despesa --> SistemaGestaoFinanças : listaDespesas
+
+SistemaGestaoFinanças -> Relatorio : gerarRelatorio(listaReceitas, listaDespesas, tipo)
+Relatorio --> SistemaGestaoFinanças : relatorioGerado
+
+SistemaGestaoFinanças --> Utilizador : mostrarRelatorio(relatorioGerado)
+deactivate SistemaGestaoFinanças
+@enduml

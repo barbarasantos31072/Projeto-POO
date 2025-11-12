@@ -1,8 +1,9 @@
+using System;
+
 namespace ProjetoFinal.Classes
 {
     public class Administrador : Utilizador
     {
-        //Atributos
         public string CodigoAcesso { get; set; }
 
         public Administrador(int id, string nome, string email, string password, string codigoacesso)
@@ -10,6 +11,7 @@ namespace ProjetoFinal.Classes
         {
             CodigoAcesso = codigoacesso;
         }
+
 
         public void GerirUtilizadores()
         {

@@ -1,18 +1,29 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "71CKflCXnaw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
+=======
+  "dgSpecHash": "mVIJ6YgQ/qg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Win11\\Desktop\\Projeto-POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
+>>>>>>> 1df671e21291b5d2430e4f14324d1d9520172aa8
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "Undefined",
       "level": "Warning",
+<<<<<<< HEAD
       "message": "Problem reading the cache file C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
       "projectPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
       "targetGraphs": []
+=======
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Win11\\Desktop\\Projeto-POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> 1df671e21291b5d2430e4f14324d1d9520172aa8
     }
   ]
 }

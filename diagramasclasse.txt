@@ -1,28 +1,68 @@
 @startuml
-left to right direction
-
-actor Utilizador
-actor Administrador
-
-rectangle "Gestão de Finanças" {
-
-usecase "Gestão de receitas" as UC1
-usecase "Gestão de despesas" as UC2
-usecase "Validar transações" as UC3
-usecase "Gestão de utilizadores" as UC4
-usecase "Criar categorias" as UC5
-usecase "Gerar relatórios" as UC6
-
-
-
-Utilizador --> UC1
-Utilizador --> UC2
-Utilizador --> UC6
-Administrador --> UC4
-Administrador --> UC5
-UC1 --> UC3 : <<extend valor>>
-UC2 --> UC3 : <<extend valor>>
-
-
+class Utilizador {
+  id: int
+  nome: string
+  email: string
+  password: string
+  perfil: string
+  + Utilizador(id, nome, email, password, perfil)
+  + registarReceita(id, descricao, valor, data, categoria)
+  + registarDespesa(id, descricao, valor, data, categoria)
+  + criarCategoria(categoria, tipo)
 }
+
+class Administrador {
+  + Administrador(id, nome, email, password, perfil)
+}
+Administrador --|> Utilizador
+
+class Receita {
+  id: int
+  descricao: string
+  valor: float
+  data: date
+  categoria: string
+  + Receita(id, descricao, valor, data, categoria)
+  + validarValor()
+}
+
+class Despesa {
+  id: int
+  descricao: string
+  valor: float
+  data: date
+  categoria: string
+  + Despesa(id, descricao, valor, data, categoria)
+  + validarValor()
+}
+
+class Categoria {
+  id: int
+  categoria: string
+  tipo: string
+  + Categoria(id, categoria, tipo)
+}
+
+
+
+class SistemaGestaoFinancas {
+  + gerarTotalReceitas(periodoInicio, periodoFim)
+  + gerarTotalDespesas(periodoInicio, periodoFim)
+  + calcularSaldo()
+  + listarTransacoesPorCategoria(categoria)
+  + guardarDados()
+  + carregarDados()
+}
+
+
+Utilizador "1" -- "0.." Receita
+Utilizador "1" -- "0.." Despesa
+Categoria "1" -- "0.." Receita
+Categoria "1" -- "0.." Despesa
+
+Utilizador --> Categoria
+SistemaGestaoFinancas --> Utilizador
+SistemaGestaoFinancas --> Receita
+SistemaGestaoFinancas --> Despesa
+SistemaGestaoFinancas --> Categoria
 @enduml

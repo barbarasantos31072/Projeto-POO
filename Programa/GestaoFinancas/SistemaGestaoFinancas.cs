@@ -67,11 +67,11 @@ namespace ProjetoFinal.Classes
                     despesas.Add(novaDespesa);
                     Console.WriteLine("Despesa adicionada com sucesso!");
                 }
-                else
-                {
-                    Console.WriteLine("Opção inválida!");
-                }
             }
         }
+
+    
+
+        
     }
 
