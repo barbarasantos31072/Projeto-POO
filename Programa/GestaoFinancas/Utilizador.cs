@@ -1,4 +1,4 @@
- using System;
+using System;
 
 namespace ProjetoFinal.Classes
 {
@@ -11,7 +11,7 @@ namespace ProjetoFinal.Classes
         public string Password { get; set; }
 
         // Construtor
-            public Utilizador(int id,string nome, string email, string password)
+        public Utilizador(int id, string nome, string email, string password)
         {
             Id = id;
             Nome = nome;
@@ -20,7 +20,7 @@ namespace ProjetoFinal.Classes
         }
         public void MostrarInfo()
         {
-            Console.WriteLine($"Nome: {Nome}, Email: {Email}, Perfil: {Perfil}");
+            Console.WriteLine($"Nome: {Nome}, Email: {Email}");
         }
     }
 }
