@@ -18,6 +18,8 @@ public class Categoria
     public static List<Categoria> ListaCategorias = new List<Categoria>();
     public static Categoria CriarCategoria()
     {
+        Random rnd = new Random();
+        int idGerado = rnd.Next(1, 1000000);
         Console.WriteLine("=== Criar Nova Categoria ===");
 
         Console.Write("Nome da categoria: ");
@@ -26,7 +28,7 @@ public class Categoria
          Console.Write("Tipo da categoria: ");
         string tipo = Console.ReadLine();
 
-        Categoria nova = new Categoria( nomecat,tipo);
+        Categoria nova = new Categoria( idGerado, nomecat, tipo);
 
         ListaCategorias.Add(nova);
 

@@ -1,18 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "71CKflCXnaw=",
+  "dgSpecHash": "mVIJ6YgQ/qg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
+  "projectFilePath": "C:\\Users\\Win11\\Desktop\\Projeto-POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problem reading the cache file C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Bárbara\\Documents\\TDM\\2ºAno 1ºSemestre\\POO\\Projeto POO\\Projeto-POO\\Programa\\GestaoFinancas\\GestaoFinancas.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }
