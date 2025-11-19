@@ -15,9 +15,36 @@ public class Categoria
     }
 
     // Método criar categoria
-    public static Categoria CriarCategoria(int id, string nomecat, string tipo)
+    public static List<Categoria> ListaCategorias = new List<Categoria>();
+    public static Categoria CriarCategoria()
     {
-        return new Categoria(id, nomecat, tipo);
+        Console.WriteLine("=== Criar Nova Categoria ===");
+
+        Console.Write("Nome da categoria: ");
+        string nomecat = Console.ReadLine();
+
+         Console.Write("Tipo da categoria: ");
+        string tipo = Console.ReadLine();
+
+        Categoria nova = new Categoria( nomecat,tipo);
+
+        ListaCategorias.Add(nova);
+
+
+        Console.WriteLine("Categoria criada com sucesso!");
+
+        return nova;
+    }
+    
+    public static void ListarCategorias()
+    {
+        Console.WriteLine("=== Categorias Existentes ===");
+        
+        foreach (var c in ListaCategorias)
+        {
+            Console.WriteLine($"{c.Id} - {c.NomeCategoria}");
+        }
+
     }
 
 }
