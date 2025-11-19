@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.Swift;
 
 namespace ProjetoFinal.Classes
 {
@@ -19,13 +20,13 @@ namespace ProjetoFinal.Classes
         }
 
         // Construtor
-        public Utilizador(int id, string nome, string email, string password, Perfil perfil)
+        public Utilizador(int id, string nome, string email, string password, Perfil pperfil)
         {
-            Id = id++;
+            Id = id;
             Nome = nome;
             Email = email;
             Password = password;
-            Perfil = perfil;
+            perfil = pperfil;
         }
         public void MostrarInfo()
         {
@@ -34,8 +35,8 @@ namespace ProjetoFinal.Classes
 
         public static Utilizador CriarConta()
         {
-            int id;
-            id = 1;
+            Random rnd = new Random();
+            int idGerado = rnd.Next(1, 1000000);
             Console.WriteLine("=== Criar Conta ===");
             Console.WriteLine("Administrador ou Utilizador?");
             string perfil = Console.ReadLine();
@@ -45,16 +46,13 @@ namespace ProjetoFinal.Classes
             string email = Console.ReadLine();
             Console.WriteLine("Inserir password:");
             string password = Console.ReadLine();
-            
-            int idGerado = id;
-            id++;
 
 
             Console.WriteLine("Conta criada com sucesso!");
 
 
-            return new Utilizador(id, nome, email, password);
+            return new Utilizador(idGerado, nome, email, password, Perfil.Utilizador);
         }
     }
-    
+
 }
