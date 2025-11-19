@@ -1,27 +1,23 @@
 using System;
 using System.Data.Common;
-
-namespace ProjetoFinal.Classes
+public class Categoria
 {
-    public class Categoria
+    public int Id { get; set; }
+    public string NomeCategoria { get; set; }
+    public string Tipo { get; set; }
+
+    // Construtor
+    public Categoria(int id, string nomecat, string tipo)
     {
-        public int Id { get; set; }
-        public string NomeCategoria { get; set; }
-        public string Tipo { get; set; }
-
-        // Construtor
-        public Categoria(int id, string nomecat, string tipo)
-        {
-            Id = id;
-            NomeCategoria = nomecat;
-            Tipo = tipo;
-        }
-
-        // Método criar categoria
-        public static Categoria CriarCategoria(int id, string nomecat, string tipo)
-        {
-            return new Categoria(id, nomecat, tipo);
-        }
-
+        Id = id;
+        NomeCategoria = nomecat;
+        Tipo = tipo;
     }
+
+    // Método criar categoria
+    public static Categoria CriarCategoria(int id, string nomecat, string tipo)
+    {
+        return new Categoria(id, nomecat, tipo);
+    }
+
 }

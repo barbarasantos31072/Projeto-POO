@@ -2,29 +2,38 @@ using System;
 
 namespace ProjetoFinal.Classes
 {
-    public class Despesa
+    public class Despesa : Transacao
     {
-        // Atributos
-        public int Id { get; set; }
-        public string Descricao { get; set; }
-        public decimal Valor { get; set; }
-        public DateTime Data { get; set; }
-        public string Categoria { get; set; }
-
-        // Construtor
-        public Despesa (int id, string descricao, decimal valor, DateTime data, string categoria)
+        public Despesa(int id, string descricao, decimal valor, DateTime data, string categoria, string tipo)
+            : base(id, descricao, valor, data, categoria, "Despesa")
         {
-            Id = id;
-            Descricao = descricao;
-            Valor = valor;
-            Data = data;
-            Categoria = categoria;
+            tipo = "Despesa";
         }
 
-        // Método
-        public bool ValidarValor()
+        public static Despesa CriarDespesa()
         {
-            return Valor > 0;
+            Random random = new Random();
+            int id = random.Next(1, 10000);
+            Console.Write("Descrição: ");
+            string descricao = Console.ReadLine();
+
+            Console.Write("Valor (€): ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal valor) || valor <= 0)
+            {
+                Console.WriteLine("Valor inválido! Deve ser maior que 0.");
+                return null;
+            }
+            Console.Write("Data (AAAA-MM-DD): ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime data))
+            {
+                Console.WriteLine("Data inválida!");
+                return null;
+            }
+
+            Console.Write("Categoria: "); //if categoria nao existir invocar metodo criar categoria
+            string categoria = Console.ReadLine();
+
+            return new Despesa(id, descricao, valor, data, categoria, "Despesa");
         }
     }
 }

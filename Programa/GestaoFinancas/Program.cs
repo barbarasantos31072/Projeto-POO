@@ -11,9 +11,6 @@ namespace ProjetoFinal
                 sistema.AdicionarTransacao();
             }
         }
-
-
     }
 }
-
 

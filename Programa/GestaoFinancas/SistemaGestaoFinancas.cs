@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace ProjetoFinal.Classes
 {
@@ -10,68 +11,59 @@ namespace ProjetoFinal.Classes
         private List<Despesa> despesas = new List<Despesa>();
         private Utilizador? utilizadorAtual;
 
-        //Adicionar Transação
-            public void AdicionarTransacao()
+        //Criar Conta
+        public static CriarConta(int id)
+        {
+            Console.WriteLine("\n=== CRIAR CONTA ===");
+            Console.WriteLine("1 - Administrador");
+            Console.WriteLine("2 - Utilizador");
+            Console.Write("Escolha um perfil: ");
+
+            string opcao = Console.ReadLine();
+
+            if (opcao == "1")
             {
-                Console.WriteLine("\n=== ADICIONAR TRANSAÇÃO ===");
-                Console.WriteLine("1 - Receita");
-                Console.WriteLine("2 - Despesa");
-                Console.Write("Escolha uma opção: ");
 
-                string opcao = Console.ReadLine();
-
-
-                Console.Write("Descrição: ");
-                string descricao = Console.ReadLine();
-
-                Console.Write("Valor (€): ");
-                if (!decimal.TryParse(Console.ReadLine(), out decimal valor) || valor <= 0)
-                {
-                    Console.WriteLine("Valor inválido! Deve ser maior que 0.");
-                    return;
-                }
-
-                Console.Write("Data (AAAA-MM-DD): ");
-                if (!DateTime.TryParse(Console.ReadLine(), out DateTime data))
-                {
-                    Console.WriteLine("Data inválida!");
-                    return;
-                }
-
-                Console.Write("Categoria: "); //if categoria nao existir invocar metodo criar categoria
-                string categoria = Console.ReadLine();
-
-                if (opcao == "1")
-                {
-                    Receita novaReceita = new Receita(receitas.Count + 1, descricao, valor, data, categoria);
-
-                    if (!novaReceita.ValidarValor())
-                    {
-                        Console.WriteLine("Valor inválido!");
-                        return;
-                    }
-
-                    receitas.Add(novaReceita);
-                    Console.WriteLine("Receita adicionada com sucesso!");
-                }
-                else if (opcao == "2")
-                {
-                    Despesa novaDespesa = new Despesa(despesas.Count + 1, descricao, valor, data, categoria);
-
-                    if (!novaDespesa.ValidarValor())
-                    {
-                        Console.WriteLine("Valor inválido!");
-                        return;
-                    }
-
-                    despesas.Add(novaDespesa);
-                    Console.WriteLine("Despesa adicionada com sucesso!");
-                }
+                Perfil 1 = User;
+                Utilizador CriarConta();
+            }
+            else if (opcao == "2")
+            {
+                // MenuAdministrador(novoUser);
+            }
+            else
+            {
+                Console.WriteLine("Perfil inválido!");
             }
         }
+        //Adicionar Transação
+        public void AdicionarTransacao()
+        {
+            Console.WriteLine("\n=== ADICIONAR TRANSAÇÃO ===");
+            Console.WriteLine("Digite um número");
+            Console.WriteLine("1 - Receita");
+            Console.WriteLine("2 - Despesa");
+            Console.Write("Escolha uma opção: ");
 
-    
-
-        
+            string opcao = Console.ReadLine();
+            if (opcao == "1")
+            {
+                Receita.CriarReceita();
+            }
+            else if (opcao == "2")
+            {
+                Despesa.CriarDespesa();
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida! Deve escolher 1 ou 2.");
+                return;
+            }
+        }
     }
+
+
+
+
+}
 
