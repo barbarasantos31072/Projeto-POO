@@ -33,13 +33,11 @@ namespace ProjetoFinal.Classes
             Console.WriteLine($"Nome: {Nome}, Email: {Email}");
         }
 
-        public static Utilizador CriarConta()
+        public static Utilizador CriarContaUtilizador()
         {
             Random rnd = new Random();
             int idGerado = rnd.Next(1, 1000000);
             Console.WriteLine("=== Criar Conta ===");
-            Console.WriteLine("Administrador ou Utilizador?");
-            string perfil = Console.ReadLine();
             Console.WriteLine("Nome:");
             string nome = Console.ReadLine();
             Console.WriteLine("Email:");
