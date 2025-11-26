@@ -11,10 +11,7 @@ namespace ProjetoFinal.Classes
         {
             CodigoAcesso = codigoacesso;
         }
-
-
-
-        //Criar Conta Utilizador
+        //Criar Conta Administrador
 
         public static Administrador CriarContaAdmin()
         {
@@ -23,7 +20,6 @@ namespace ProjetoFinal.Classes
 
             Console.WriteLine("=== Criar Conta ===");
 
-            // Primeiro pedir o código de acesso
             Console.WriteLine("Código de acesso do administrador:");
             string codigoAcesso = Console.ReadLine();
 
