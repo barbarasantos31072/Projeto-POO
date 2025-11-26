@@ -19,3 +19,6 @@ function addDespesa() {
     document.getElementById("descricao").value = "";
     document.getElementById("valor").value = "";
 }
+function removeDespesa(botao) {
+    botao.parentElement.parentElement.remove();
+}
