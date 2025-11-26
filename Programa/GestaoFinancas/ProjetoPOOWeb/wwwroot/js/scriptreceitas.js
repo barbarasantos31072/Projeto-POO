@@ -1,4 +1,4 @@
-function addDespesa() {
+function addReceita() {
     let desc = document.getElementById("descricao").value;
     let valor = document.getElementById("valor").value;
 
@@ -18,4 +18,7 @@ function addDespesa() {
 
     document.getElementById("descricao").value = "";
     document.getElementById("valor").value = "";
+}
+function removeReceita(botao) {
+    botao.parentElement.parentElement.remove();
 }
