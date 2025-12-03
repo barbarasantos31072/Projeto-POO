@@ -47,3 +47,13 @@ button {
   cursor: pointer;
 }
 
+.btn-conta {
+  padding: 12px 25px;
+  background-color: #0b6edc;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
