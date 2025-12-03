@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoFinal.Classes
 {
     public class Utilizador
     {
+//Propriedades
+
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nome é obrigatório")]
@@ -25,7 +29,10 @@ namespace ProjetoFinal.Classes
             Administrador
         }
 
+//Construtor
+
         public Utilizador() { }
+
         public Utilizador(int id, string nome, string email, string password, Perfil perfil)
         {
             Id = id;
@@ -35,5 +42,14 @@ namespace ProjetoFinal.Classes
             PerfilUsuario = perfil;
         }
 
+
+
+//Método gerar ID
+
+        public static int GerarId()
+        {
+            Random rnd = new Random();
+            return rnd.Next(1, 1000000);
+        }
     }
 }

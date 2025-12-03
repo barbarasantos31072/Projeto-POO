@@ -1,50 +1,64 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinal.Classes;
-using System.Linq;
+using System;
 
 namespace ProjetoFinal.Controllers
 {
     public class TransacaoController : Controller
     {
-        public IActionResult AdicionarDespesa()
+        public IActionResult CriarDespesa()
         {
-            ViewBag.Categorias = Categoria.ListaCategorias;
             return View();
         }
 
         [HttpPost]
-        public IActionResult AdicionarDespesa(string descricao, decimal valor, DateTime data, string categoriaNome)
+        public IActionResult CriarDespesa(string descricao, decimal valor, DateTime data, string categoria)
         {
             try
             {
-                // validações, criação e armazenamento da despesa (como expliquei antes)
+                Transacao.CriarTransacao(descricao, valor, data, categoria, "Despesa");
+                ViewBag.Sucesso = "Despesa criada com sucesso!";
             }
             catch (Exception ex)
             {
                 ViewBag.Erro = ex.Message;
-                ViewBag.Categorias = Categoria.ListaCategorias;
-                return View();
             }
-        }
-        public IActionResult AdicionarReceita()
-        {
-            ViewBag.Categorias = Categoria.ListaCategorias;
+
             return View();
         }
 
+
+        // ---------- CRIAR RECEITA ---------- //
+
+        // GET: /Transacao/CriarReceita
+        public IActionResult CriarReceita()
+        {
+            return View();
+        }
+
+        // POST: /Transacao/CriarReceita
         [HttpPost]
-        public IActionResult AdicionarReceita(string descricao, decimal valor, DateTime data, string categoriaNome)
+        public IActionResult CriarReceita(string descricao, decimal valor, DateTime data, string categoria)
         {
             try
             {
-                // validações, criação e armazenamento da receita
+                Transacao.CriarTransacao(descricao, valor, data, categoria, "Receita");
+                ViewBag.Sucesso = "Receita criada com sucesso!";
             }
             catch (Exception ex)
             {
                 ViewBag.Erro = ex.Message;
-                ViewBag.Categorias = Categoria.ListaCategorias;
-                return View();
             }
+
+            return View();
+        }
+
+
+        // ---------- LISTAR TODAS AS TRANSAÇÕES ---------- //
+
+        public IActionResult Lista()
+        {
+            return View(Transacao.ListaTransacoes);
         }
     }
 }

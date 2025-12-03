@@ -1,0 +1,43 @@
+@model ProjetoFinal.Classes.Transacao
+@{
+    ViewBag.Title = "Criar Despesa";
+}
+
+<h2>Criar Despesa</h2>
+
+@if (ViewBag.Erro != null)
+{
+    <div style="color:red">@ViewBag.Erro</div>
+}
+@if (ViewBag.Mensagem != null)
+{
+    <div style="color:green">@ViewBag.Mensagem</div>
+}
+
+<form asp-action="AdicionarDespesa" method="post">
+    <div>
+        <label>Descrição:</label>
+        <input type="text" name="descricao" value="@Model?.Descricao" />
+    </div>
+    <div>
+        <label>Valor (€):</label>
+        <input type="number" step="0.01" name="valor" value="@Model?.Valor" />
+    </div>
+    <div>
+        <label>Data:</label>
+        <input type="date" name="data" value="@Model?.Data.ToString("yyyy-MM-dd")" />
+    </div>
+    <div>
+        <label>Categoria:</label>
+        <select name="categoriaNome">
+            <option value="">-- Escolha uma categoria --</option>
+            @foreach (var c in ViewBag.Categorias)
+            {
+                <option value="@c.NomeCategoria">@c.NomeCategoria</option>
+            }
+        </select>
+    </div>
+    <input type="hidden" name="tipo" value="Despesa" />
+    <br />
+    <button type="submit">Adicionar Despesa</button>
+</form>
