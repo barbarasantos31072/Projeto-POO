@@ -25,10 +25,10 @@ public class Categoria
         Console.Write("Nome da categoria: ");
         string nomecat = Console.ReadLine();
 
-         Console.Write("Tipo da categoria: ");
+        Console.Write("Tipo da categoria: ");
         string tipo = Console.ReadLine();
 
-        Categoria nova = new Categoria( idGerado, nomecat, tipo);
+        Categoria nova = new Categoria(idGerado, nomecat, tipo);
 
         ListaCategorias.Add(nova);
 
@@ -37,11 +37,11 @@ public class Categoria
 
         return nova;
     }
-    
+
     public static void ListarCategorias()
     {
         Console.WriteLine("=== Categorias Existentes ===");
-        
+
         foreach (var c in ListaCategorias)
         {
             Console.WriteLine($"{c.Id} - {c.NomeCategoria}");
