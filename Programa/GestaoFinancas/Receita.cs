@@ -30,9 +30,31 @@ namespace ProjetoFinal.Classes
                 Console.WriteLine("Data inválida!");
                 return null;
             }
+            Console.Write("Categoria: ");
+            string nomeCategoria = Console.ReadLine();
 
-            Console.Write("Categoria: "); //if categoria nao existir invocar metodo criar categoria
-            string categoria = Console.ReadLine();
+
+            Categoria catExistente = ListaCategorias
+                .Find(c => c.Nome.Equals(nomeCategoria, StringComparison.OrdinalIgnoreCase));
+
+            if (catExistente == null)
+            {
+                Console.WriteLine("Categoria não encontrada. Criar nova? (s/n)");
+                string resposta = Console.ReadLine().ToLower();
+
+                if (resposta == "s")
+                {
+                    catExistente = CriarCategoria();
+                }
+                else
+                {
+                    Console.WriteLine("Operação cancelada.");
+                    return;
+                }
+            }
+
+            Console.WriteLine($"Categoria selecionada: {catExistente.Nome}");
+            ;
 
             return new Receita(id, descricao, valor, data, categoria, "Receita");
         }

@@ -95,29 +95,72 @@ namespace ProjetoFinal.Classes
                 return;
             }
         }
-        public decimal TotalReceitas()
+        //Total Receitas
+        public decimal TotalReceitas(DateTime inicio, DateTime fim)
         {
             decimal total = 0;
 
             foreach (var receita in receitas)
             {
-                total += receita.Valor;
+                if (receita.Data >= inicio && receita.Data <= fim)
+                {
+                    total += receita.Valor;
+                }
             }
 
             return total;
         }
-        public decimal TotalDespesas()
 
+        //Total Despesas
+        public decimal TotalDespesas(DateTime inicio, DateTime fim)
         {
             decimal total = 0;
 
             foreach (var despesa in despesas)
             {
-                total += despesa.Valor;
+                if (despesa.Data >= inicio && despesa.Data <= fim)
+                {
+                    total += despesa.Valor;
+                }
             }
 
             return total;
         }
+
+        //Listar Transações por Categoria
+        public static void ListarTransacoesPorCategoria()
+        {
+            Console.Write("Nome da categoria: ");
+            string nomeCat = Console.ReadLine();
+
+            var transacoesFiltradas = ListaTransacoes
+                .Where(t => t.Categoria.Equals(nomeCat, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (transacoesFiltradas.Count == 0)
+            {
+                Console.WriteLine("Nenhuma transação encontrada para esta categoria.");
+                return;
+            }
+
+            Console.WriteLine($"\n=== Transações na categoria '{nomeCat}' ===");
+
+            foreach (var trans in transacoesFiltradas)
+            {
+                Console.WriteLine($"ID: {trans.Id} | Nome: {trans.Nome} | Valor: {trans.Valor}€");
+            }
+        }
+        //Saldo Final
+        public decimal SaldoFinal(DateTime inicio, DateTime fim)
+        {
+            decimal totalReceitas = TotalReceitas(inicio, fim);
+            decimal totalDespesas = TotalDespesas(inicio, fim);
+
+            decimal saldo = totalReceitas - totalDespesas;
+
+            return saldo;
+        }
+
         //Menu Relatório
         public void MenuRelatorios()
         {
@@ -127,10 +170,10 @@ namespace ProjetoFinal.Classes
             {
                 Console.WriteLine("\n=== MENU DE RELATÓRIOS ===");
                 Console.WriteLine("1 - Relatório Geral");
-                Console.WriteLine("2 - Total de Receitas");
-                Console.WriteLine("3 - Total de Despesas");
-                Console.WriteLine("4 - Listar Transações por Categoria");
-                Console.WriteLine("5 - Saldo Final");
+                Console.WriteLine("1 - Total de Receitas");
+                Console.WriteLine("2 - Total de Despesas");
+                Console.WriteLine("3 - Listar Transações por Categoria");
+                Console.WriteLine("4 - Saldo Final");
                 Console.WriteLine("0 - Voltar");
 
                 Console.Write("Escolha uma opção: ");
@@ -139,23 +182,27 @@ namespace ProjetoFinal.Classes
                 switch (opcao)
                 {
                     case "1":
-                        // Relatório Geral
-                        break;
-
-                    case "2":
                         decimal totalr = TotalReceitas();
                         Console.WriteLine($"O total de receitas é: €{totalr}");
                         break;
-                    case "3":
+
+                    case "2":
                         decimal totald = TotalReceitas();
                         Console.WriteLine($"O total de receitas é: €{totald}");
                         break;
-                    case "4":
-                        //listar por categoria
+                    case "3":
+                        ListarTransacoesPorCategoria();
                         break;
-                    case "5":
-                    
-                    break;
+                    case "4":
+                        Console.Write("Data inicial (yyyy-mm-dd): ");
+                        DateTime inicio = DateTime.Parse(Console.ReadLine());
+
+                        Console.Write("Data final (yyyy-mm-dd): ");
+                        DateTime fim = DateTime.Parse(Console.ReadLine());
+
+                        decimal saldo = SaldoFinal(inicio, fim);
+
+                        Console.WriteLine($"Saldo final no período: {saldo}€");
                     case "0":
                         sair = true;
                         break;
