@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Criar Conta";
+}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Finanças</title>
+    <link rel="stylesheet" href="css/testecriarconta.css">
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@if(ViewBag.Erro != null)
+{
+    <div style="color:red">@ViewBag.Erro</div>
+}
+
+@if(ViewBag.Mensagem != null)
+{
+    <div style="color:green">@ViewBag.Mensagem</div>
+}
+
+
+<div class="container">
+    <h1>Criar Conta</h1>
+    
+    <form method="post" id="formConta">
+
+        <input type="text" name="nome" placeholder="Nome" />
+
+        <input type="email" name="email" placeholder="Email" />
+
+        <input type="password" name="password" placeholder="Password" />
+
+        <select name="tipoConta" id="tipoConta">
+            <option value="Utilizador">Utilizador</option>
+            <option value="Administrador">Administrador</option>
+        </select>
+
+        <input type="text" name="codigoAcesso" id="codigoAcesso" placeholder="Código de Acesso" style="display: none;" />
+
+        <button type="submit" class="btn">Criar Conta</button>
+
+        <a href="/Conta/Login" class="btn-link">Tenho Conta</a>
+    </form>
+</div>
+
+<script src="~/js/testecriarconta.js"></script>
+</html>
