@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ProjetoFinal.Classes
+namespace POOWeb.Classes
 {
     public static class BaseDados
     {

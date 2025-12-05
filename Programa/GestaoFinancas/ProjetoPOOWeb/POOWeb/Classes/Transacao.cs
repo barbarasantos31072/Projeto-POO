@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace ProjetoFinal.Classes
+namespace POOWeb.Classes
 {
     public class Transacao
     {
-//Propriedades
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Descrição é obrigatória")]
@@ -23,35 +22,40 @@ namespace ProjetoFinal.Classes
         public DateTime Data { get; set; }
 
         [Required(ErrorMessage = "Categoria é obrigatória")]
-        public string Categoria { get; set; }
+        public Categoria Categoria { get; set; }
 
         [Required(ErrorMessage = "Tipo é obrigatório")]
-        public string Tipo { get; set; }
+        public TipoCategoria Tipo { get; set; }
 
-//Lista de Transações
+        public enum TipoCategoria
+        {
+            Receita,
+            Despesa
+        }
+        // Lista global de transações
         public static List<Transacao> ListaTransacoes = new List<Transacao>();
 
-//Construtor
         public Transacao() { }
 
-        public Transacao(int id, string descricao, decimal valor, DateTime data, string categoria, string tipo)
+        public Transacao(int id, string descricao, decimal valor, DateTime data, Categoria categoria, TipoCategoria tipo)
         {
             Id = id;
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            Categoria = categoria;
+            this.Categoria = categoria;
             Tipo = tipo;
         }
 
-//Gerar ID
-        public static int GerarId()
+        // Random para gerar ID
+        private static Random rnd = new Random();
+        private static int GerarId()
         {
-            return new Random().Next(1, 1000000);
+            return rnd.Next(1, 9999999);
         }
 
-//Criar transação
-        public static Transacao CriarTransacao(string descricao, decimal valor, DateTime data, string categoria, string tipo)
+        //  MÉTODO PRINCIPAL — CRIA TRANSACAO E PROCURA CATEGORIA
+        public static Transacao CriarTransacao(string descricao, decimal valor, DateTime data, string nomeCategoria, string tipo)
         {
             if (string.IsNullOrWhiteSpace(descricao))
                 throw new Exception("A descrição é obrigatória.");
@@ -59,32 +63,34 @@ namespace ProjetoFinal.Classes
             if (valor <= 0)
                 throw new Exception("O valor deve ser maior que 0.");
 
-            if (string.IsNullOrWhiteSpace(categoria))
+            if (string.IsNullOrWhiteSpace(nomeCategoria))
                 throw new Exception("A categoria é obrigatória.");
 
             if (tipo != "Despesa" && tipo != "Receita")
                 throw new Exception("O tipo deve ser 'Despesa' ou 'Receita'.");
 
-
-//Procurar categoria existente
+            //  Procurar categoria existente na lista da classe Categoria
             Categoria categoriaExistente = Categoria.ListaCategorias
-                .FirstOrDefault(c =>
-                    c.NomeCategoria.Equals(categoria, StringComparison.OrdinalIgnoreCase)
-                    && c.Tipo == tipo);
+                .FirstOrDefault(c => c.Nome.Equals(nomeCategoria, StringComparison.OrdinalIgnoreCase), null);
 
-//Se não existir, criar
+            // Se não existir → criar automaticamente
             if (categoriaExistente == null)
             {
-                categoriaExistente = Categoria.CriarCategoria(categoria, tipo);
-                Console.WriteLine($"Categoria '{categoria}' criada automaticamente.");
+                throw new Exception("Esta categoria não existe");
             }
 
-//Criar transação
+            // Criar transação
             int novoId = GerarId();
 
-            Transacao nova = new Transacao(novoId, descricao, valor, data, categoriaExistente.NomeCategoria, tipo);
+            Transacao nova = new Transacao(
+                novoId,
+                descricao,
+                valor,
+                data,
+                categoriaExistente,
+                (TipoCategoria)Enum.Parse(typeof(TipoCategoria), tipo)
+            );
 
-//Guardar na lista
             ListaTransacoes.Add(nova);
 
             return nova;
