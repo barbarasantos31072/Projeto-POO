@@ -7,12 +7,6 @@ namespace POOWeb.Controllers
 {
     public class ContaController : Controller
     {
-        // GET: Criar Conta
-        [HttpGet]
-        public IActionResult CriarConta()
-        {
-            return View();
-        }
 
         // POST: Criar Conta
         [HttpPost]
@@ -52,13 +46,6 @@ namespace POOWeb.Controllers
                 ViewBag.Erro = ex.Message;
                 return View();
             }
-        }
-
-        // GET: Login
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
         }
 
         // POST: Login

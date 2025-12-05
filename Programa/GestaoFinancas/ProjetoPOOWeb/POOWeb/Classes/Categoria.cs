@@ -36,10 +36,25 @@ namespace POOWeb.Classes
         public static Categoria CriarCategoria(string nome)
         {
             int id = GerarId();
-            Categoria nova = new Categoria(id,nome);
+            Categoria nova = new Categoria(id, nome);
             ListaCategorias.Add(nova);
             return nova;
         }
+        //Eliminar Categoria
+        public static bool EliminarCategoria(string nome)
+        {
+            Categoria categoria = ObterPorNome(nome);
 
+            if (categoria == null)
+                return false;
+
+            ListaCategorias.Remove(categoria);
+            return true;
+        }
+        public static Categoria ObterPorNome(string nome)
+        {
+            return Categoria.ListaCategorias
+                .FirstOrDefault(c => c.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase), null);
+        }
     }
 }
