@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Página Relatório</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div class="container">
+    <h1>Relatório</h1>
+
+    <h3>Total gasto: <span id="total">0 €</span></h3>
+
+    <h3>Por categoria:</h3>
+    <ul id="porCategoria"></ul>
+</div>
+
+<script>
+    const transacoes = [
+        { valor: 10, categoria: "Alimentação" },
+        { valor: 25, categoria: "Transporte" },
+        { valor: 40, categoria: "Alimentação" },
+    ];
+
+    let total = 0;
+    const catTotals = {};
+
+    transacoes.forEach(t => {
+        total += t.valor;
+
+        if (!catTotals[t.categoria]) {
+            catTotals[t.categoria] = 0;
+        }
+        catTotals[t.categoria] += t.valor;
+    });
+
+    document.getElementById("total").innerText = total + " €";
+
+    const lista = document.getElementById("porCategoria");
+    for (const cat in catTotals) {
+        const li = document.createElement("li");
+        li.innerText = `${cat}: ${catTotals[cat]} €`;
+        lista.appendChild(li);
+    }
+</script>
+</body>
+</html>

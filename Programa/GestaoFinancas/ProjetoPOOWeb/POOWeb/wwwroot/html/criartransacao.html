@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Criar Transação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Criar Transação</h1>
+
+    <input id="descricao" placeholder="Descrição">
+    <input id="valor" type="number" placeholder="Valor (€)">
+    <select id="categoria">
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Lazer</option>
+    </select>
+
+    <button onclick="adicionarTransacao()">Adicionar</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaTransacoes"></tbody>
+    </table>
+</div>
+
+<script>
+    const tabela = document.getElementById("tabelaTransacoes");
+    let editIndex = null;
+
+    function adicionarTransacao() {
+        const desc = document.getElementById("descricao").value;
+        const val = document.getElementById("valor").value;
+        const cat = document.getElementById("categoria").value;
+
+        if (editIndex !== null) {  
+            // EDIT MODE
+            const row = tabela.rows[editIndex];
+            row.cells[0].innerText = desc;
+            row.cells[1].innerText = val + " €";
+            row.cells[2].innerText = cat;
+            editIndex = null;
+        } else {
+            // ADD MODE
+            const row = tabela.insertRow();
+            row.innerHTML = `
+                <td>${desc}</td>
+                <td>${val} €</td>
+                <td>${cat}</td>
+                <td>
+                    <button class="btn-small yellow" onclick="editar(this)">Editar</button>
+                    <button class="btn-small red" onclick="remover(this)">Eliminar</button>
+                </td>
+            `;
+        }
+
+        document.getElementById("descricao").value = "";
+        document.getElementById("valor").value = "";
+    }
+
+    function editar(btn) {
+        const row = btn.parentElement.parentElement;
+        editIndex = row.rowIndex - 1;
+
+        document.getElementById("descricao").value = row.cells[0].innerText;
+        document.getElementById("valor").value = parseFloat(row.cells[1].innerText);
+        document.getElementById("categoria").value = row.cells[2].innerText;
+    }
+
+    function remover(btn) {
+        btn.parentElement.parentElement.remove();
+    }
+</script>
+</body>
+</html>
