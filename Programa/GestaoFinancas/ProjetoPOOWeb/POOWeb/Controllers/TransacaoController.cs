@@ -6,11 +6,11 @@ namespace POOWeb.Controllers
 {
     public class TransacaoController : Controller
     {
-        public IActionResult CriarTransacao()
-        {
-            return View();
-        }
+        //GET: Listar Transações
+        [HttpGet]
+        public IActionResult Lista() => View(Transacao.ListaTransacoes);
 
+        //POST: Criar Transacao
         [HttpPost]
         public IActionResult CriarTransacao(string descricao, decimal valor, DateTime data, string categoria, string tipo)
         {
@@ -27,11 +27,40 @@ namespace POOWeb.Controllers
             return View();
         }
 
-        // ---------- LISTAR TODAS AS TRANSAÇÕES ---------- //
+        //PUT: Editar Transacao
 
-        //        public IActionResult Lista()
-        //{
-        // return View(Transacao.ListaTransacoes);
-        // }
+        [HttpPut]
+        public IActionResult Editar(int id, string descricao, decimal valor, DateTime data, string categoria, string tipo)
+        {
+            try
+            {
+                bool ok = Transacao.Editar(id, descricao, valor, data, categoria, tipo);
+
+                if (ok)
+                    return RedirectToAction("Lista");
+
+                ViewBag.Erro = "Transação não encontrada.";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Erro = ex.Message;
+            }
+
+            return View(Transacao.ObterPorId(id));
+        }
+
+        //DELETE: Eliminar Transacao
+        [HttpDelete]
+        public IActionResult Apagar(int id)
+        {
+            bool apagou = Transacao.Apagar(id);
+
+            if (!apagou)
+                ViewBag.Erro = "Transação não encontrada.";
+            else
+                ViewBag.Sucesso = "Transação apagada com sucesso!";
+
+            return RedirectToAction("Lista");
+        }
     }
 }

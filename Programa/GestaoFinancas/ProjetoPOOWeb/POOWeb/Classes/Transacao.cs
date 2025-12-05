@@ -25,9 +25,9 @@ namespace POOWeb.Classes
         public Categoria Categoria { get; set; }
 
         [Required(ErrorMessage = "Tipo é obrigatório")]
-        public TipoCategoria Tipo { get; set; }
+        public TipoTransacao Tipo { get; set; }
 
-        public enum TipoCategoria
+        public enum TipoTransacao
         {
             Receita,
             Despesa
@@ -37,7 +37,7 @@ namespace POOWeb.Classes
 
         public Transacao() { }
 
-        public Transacao(int id, string descricao, decimal valor, DateTime data, Categoria categoria, TipoCategoria tipo)
+        public Transacao(int id, string descricao, decimal valor, DateTime data, Categoria categoria, TipoTransacao tipo)
         {
             Id = id;
             Descricao = descricao;
@@ -70,8 +70,7 @@ namespace POOWeb.Classes
                 throw new Exception("O tipo deve ser 'Despesa' ou 'Receita'.");
 
             //  Procurar categoria existente na lista da classe Categoria
-            Categoria categoriaExistente = Categoria.ListaCategorias
-                .FirstOrDefault(c => c.Nome.Equals(nomeCategoria, StringComparison.OrdinalIgnoreCase), null);
+            Categoria categoriaExistente = Categoria.ObterPorNome(nomeCategoria);
 
             // Se não existir → criar automaticamente
             if (categoriaExistente == null)
@@ -88,12 +87,75 @@ namespace POOWeb.Classes
                 valor,
                 data,
                 categoriaExistente,
-                (TipoCategoria)Enum.Parse(typeof(TipoCategoria), tipo)
+                (TipoTransacao)Enum.Parse(typeof(TipoTransacao), tipo)
             );
 
             ListaTransacoes.Add(nova);
 
             return nova;
         }
+
+        // Apagar transacao
+        public static bool Apagar(int id)
+        {
+            Transacao trans = ObterPorId(id);
+
+            if (trans == null)
+                return false;
+
+            ListaTransacoes.Remove(trans);
+            return true;
+        }
+        public static bool Editar(
+            int id,
+            string novaDescricao,
+            decimal novoValor,
+            DateTime novaData,
+            string nomeCategoria,
+            string tipo)
+        {
+            Transacao trans = ObterPorId(id);
+
+            if (trans == null)
+                return false;
+
+            // Validar
+            if (string.IsNullOrWhiteSpace(novaDescricao) ||
+                string.IsNullOrWhiteSpace(nomeCategoria) ||
+                novoValor <= 0)
+                throw new Exception("Dados inválidos.");
+
+            // Procurar categoria
+            Categoria cat = Categoria.ListaCategorias
+                .FirstOrDefault(c => c.Nome.Equals(nomeCategoria, StringComparison.OrdinalIgnoreCase));
+
+            if (cat == null)
+                throw new Exception("Categoria não existe.");
+
+            // Atualizar campos
+            trans.Descricao = novaDescricao;
+            trans.Valor = novoValor;
+            trans.Data = novaData;
+            trans.Categoria = cat;
+            trans.Tipo = (TipoTransacao)Enum.Parse(typeof(TipoTransacao), tipo, true);
+
+            return true;
+        }
+        //Obter por ID
+        public static Transacao ObterPorId(int id)
+        {
+            return ListaTransacoes.FirstOrDefault(t => t.Id == id);
+        }
+        // Total por Tipo
+        public static decimal TotalPorTipo(TipoTransacao tipo, DateTime? inicio, DateTime? fim)
+        {
+            return ListaTransacoes
+                .Where(t => t.Tipo == tipo &&
+                    (!inicio.HasValue || t.Data >= inicio.Value) &&
+                    (!fim.HasValue || t.Data <= fim.Value))
+                .Sum(t => t.Valor);
+        }
+
+
     }
 }
