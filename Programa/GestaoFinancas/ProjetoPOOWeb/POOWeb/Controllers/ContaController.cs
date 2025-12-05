@@ -1,18 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal.Classes;
+using POOWeb.Classes;
 using System;
+using System.Linq;
 
-namespace ProjetoFinal.Controllers
+namespace POOWeb.Controllers
 {
     public class ContaController : Controller
     {
-
+        // GET: Criar Conta
         [HttpGet]
         public IActionResult CriarConta()
         {
             return View();
         }
 
+        // POST: Criar Conta
         [HttpPost]
         public IActionResult CriarConta(string nome, string email, string password, string tipoConta, string codigoAcesso)
         {
@@ -51,47 +53,45 @@ namespace ProjetoFinal.Controllers
                 return View();
             }
         }
-        public class ContaController : Controller
-        {
 
-            [HttpGet]
-            public IActionResult Login()
+        // GET: Login
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Login
+        [HttpPost]
+        public IActionResult Login(string email, string password)
+        {
+            try
             {
+                if (string.IsNullOrWhiteSpace(email))
+                    throw new Exception("Email obrigatório");
+                if (string.IsNullOrWhiteSpace(password))
+                    throw new Exception("Password obrigatória");
+
+                // Procurar utilizador na lista
+                var utilizador = BaseDados.Utilizadores
+                    .FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password);
+
+                if (utilizador == null)
+                    throw new Exception("Credenciais inválidas!");
+
+                // Guardar o utilizador logado na sessão
+                HttpContext.Session.SetInt32("UserId", utilizador.Id);
+                HttpContext.Session.SetString("UserNome", utilizador.Nome);
+                HttpContext.Session.SetString("UserPerfil", utilizador.PerfilUsuario.ToString());
+
+                ViewBag.Mensagem = $"Login efetuado com sucesso! Bem-vindo {utilizador.Nome}";
                 return View();
             }
-
-            [HttpPost]
-            public IActionResult Login(string email, string password)
+            catch (Exception ex)
             {
-                try
-                {
-                    if (string.IsNullOrWhiteSpace(email))
-                        throw new Exception("Email obrigatório");
-                    if (string.IsNullOrWhiteSpace(password))
-                        throw new Exception("Password obrigatória");
-
-                    // Procurar utilizador na lista
-                    var utilizador = BaseDados.Utilizadores.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password);
-
-                    if (utilizador == null)
-                        throw new Exception("Credenciais inválidas!");
-
-                    // Guardar o utilizador logado na sessão
-                    HttpContext.Session.SetInt32("UserId", utilizador.Id);
-                    HttpContext.Session.SetString("UserNome", utilizador.Nome);
-                    HttpContext.Session.SetString("UserPerfil", utilizador.PerfilUsuario.ToString());
-
-                    ViewBag.Mensagem = $"Login efetuado com sucesso! Bem-vindo {utilizador.Nome}";
-                    return View();
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Erro = ex.Message;
-                    return View();
-                }
+                ViewBag.Erro = ex.Message;
+                return View();
             }
         }
     }
 }
-
-

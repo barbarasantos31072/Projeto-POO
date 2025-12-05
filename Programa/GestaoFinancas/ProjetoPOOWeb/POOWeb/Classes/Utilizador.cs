@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjetoFinal.Classes
+namespace POOWeb.Classes
 {
     public class Utilizador
     {

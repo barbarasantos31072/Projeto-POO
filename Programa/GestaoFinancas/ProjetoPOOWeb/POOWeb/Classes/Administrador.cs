@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjetoFinal.Classes
+namespace POOWeb.Classes
 {
     public class Administrador : Utilizador
     {
