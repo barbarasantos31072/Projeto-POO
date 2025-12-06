@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+
+
 <div class="container">
     <h1>Criar Categoria</h1>
 
@@ -18,19 +21,6 @@
     <ul id="listaCategorias"></ul>
 </div>
 
-<script>
-    const lista = document.getElementById("listaCategorias");
-
-    function criarCategoria() {
-        const nome = document.getElementById("categoriaNome").value.trim();
-        if (!nome) return;
-
-        const li = document.createElement("li");
-        li.innerText = nome;
-        lista.appendChild(li);
-
-        document.getElementById("categoriaNome").value = "";
-    }
-</script>
+<script src="js/categoria.js"></script>
 </body>
 </html>
