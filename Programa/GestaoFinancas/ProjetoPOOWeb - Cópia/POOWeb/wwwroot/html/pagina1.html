@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Despesas</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+
+    <h1>Gestão de Despesas</h1>
+
+    <div class="inputs">
+        <input type="text" id="descricao" placeholder="Descrição">
+        <input type="number" id="valor" placeholder="Valor (€)">
+        <button class="btn-add" onclick="addDespesa()">Adicionar</button>
+    </div>
+
+    <div class="tabela-container">
+        <table id="tabelaDespesas">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor (€)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script src="js/scriptdespesas.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Finanças</title>
+    <link rel="stylesheet" href="css/criarconta.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Criar Conta</h2>
+
+    <form id="signupForm">
+      <input type="text" id="nome" placeholder="Nome" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <select id="tipoConta">
+          <option value="Utilizador">Utilizador</option>
+          <option value="Administrador">Administrador</option>
+      </select>
+      <input type="text" id="codigoAcesso" placeholder="Código de Acesso (se admin)">
+      <button type="submit">Criar Conta</button>
+      <a href="login.html" class="btn-conta">Tenho Conta</a>
+    </form>
+
+
+  </div>
+
+  <script src="js/conta.js"></script>
+</body>
+</html>
