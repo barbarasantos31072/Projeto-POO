@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "paginicial.html";
         } else {
             msg.textContent = "Email ou password incorretos";
-            msg.style.color = "red";
+        
         }
     });
 });

@@ -82,18 +82,14 @@ background: #005caa;
 .blue-button {
 background: #0078d7;
 color: white;
-padding: 15px 80px;
+display: inline-block;
+width:200px;
+padding: 12px 0;
 font-size: 20px;
 font-weight: bold;
 border-radius: 6px;
 border: 1px solid #005caa;
-margin: 0 5px;
-transition: background 0.3s;
 text-decoration: none;
-}
-
-.blue-button:hover {
-background: #005caa;
 }
 
 .btn-del {
@@ -105,7 +101,55 @@ border-radius: 6px;
 cursor: pointer;
 }
 
+#loginForm input {
+  display: block;
+  width: 220px;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#loginForm button {
+    width: 200px;
+    padding: 12px;
+    background: #0078d7;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #005caa;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block; 
+}
+
+#signupForm input {
+  display: block;
+  width: 220px;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#signupForm button {
+    width: 200px;
+    padding: 12px;
+    background: #0078d7;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #005caa;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block; 
+}
 /*DESPESAS E LISTAGENS*/
+
 .tabela-container {
 width: 80%;
 margin: 40px auto;
