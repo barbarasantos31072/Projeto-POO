@@ -1,13 +1,16 @@
-document.getElementById("loginForm").addEventListener("submit", async function (e) {
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const data = {
+        nome: document.getElementById("nome").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
+        tipoConta: document.getElementById("tipoConta").value,
+        codigoAcesso: document.getElementById("codigoAcesso").value
     };
 
     try {
-        const response = await fetch("http://localhost:5126/api/conta/login", {
+        const response = await fetch("http://localhost:5126/api/conta/criar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
@@ -21,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         }
 
         alert(result.mensagem);
-        window.location.href = "criartransacao.html";
+        window.location.href = "login.html";
 
     } catch (err) {
         alert("Erro ao ligar ao servidor: " + err);
