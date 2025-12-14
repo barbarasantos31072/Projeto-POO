@@ -21,7 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         }
 
         alert(result.mensagem);
-        window.location.href = "criartransacao.html";
+        window.location.href = "paginicial.html";
 
     } catch (err) {
         alert("Erro ao ligar ao servidor: " + err);
