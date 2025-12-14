@@ -105,6 +105,13 @@ border: 1px solid #005caa;
 text-decoration: none;
 }
 
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; 
+}
+
 .btn-del {
 background: #d73333;
 color: white;
