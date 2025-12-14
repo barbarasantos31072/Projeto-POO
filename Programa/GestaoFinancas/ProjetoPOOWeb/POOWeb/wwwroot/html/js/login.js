@@ -20,8 +20,14 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             return;
         }
 
+
+        localStorage.setItem("usuarioEmail", data.email);
+        if (result.token) {
+            localStorage.setItem("token", result.token);
+        }
+
         alert(result.mensagem);
-        window.location.href = "criartransacao.html";
+        window.location.href = "paginicial.html";
 
     } catch (err) {
         alert("Erro ao ligar ao servidor: " + err);

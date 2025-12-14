@@ -7,26 +7,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   
 <div class="container">
     <h1>Criar Transação</h1>
 
-    <input id="descricao" placeholder="Descrição">
-    <input id="valor" type="number" step="0.01" placeholder="Valor (€)">
-    <input id="data" type="date" placeholder="Data">
-    
-    <select id="categoria">
-        <option>Alimentação</option>
-        <option>Transporte</option>
-        <option>Lazer</option>
-    </select>
+    <form id="criartransacaoForm">
+        <input id="descricao" placeholder="Descrição" required>
+        <input id="valor" type="number" step="0.01" placeholder="Valor (€)" required>
+        <input id="data" type="date" placeholder="Data" required>
+        
+        <select id="categoria" required>
+            <option>Alimentação</option>
+            <option>Transporte</option>
+            <option>Lazer</option>
+        </select>
 
-    <select id="tipo">
-        <option>Receita</option>
-        <option>Despesa</option>
-    </select>
+        <select id="tipo" required>
+            <option>Receita</option>
+            <option>Despesa</option>
+        </select>
 
-    <button onclick="adicionarTransacao()">Adicionar</button>
+        <button type="submit">Adicionar</button>
+    </form>
 
     <table>
         <thead>
@@ -42,6 +43,7 @@
         <tbody id="tabelaTransacoes"></tbody>
     </table>
 </div>
- <script src="js/transacao.js"></script>
+
+<script src="js/criartransacao.js"></script>
 </body>
 </html>
