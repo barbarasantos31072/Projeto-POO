@@ -9,7 +9,7 @@ public class RelatorioController : Controller
     [HttpGet]
     public IActionResult PorCategoria()
     {
-        var dados = Transacao.ListaTransacoes
+        var dados = Transacao.ObterTransacoesUtilizador("user")
             .GroupBy(t => t.Categoria)
             .Select(g => new
             {
@@ -24,21 +24,21 @@ public class RelatorioController : Controller
     [HttpGet]
     public IActionResult TotalDespesas(DateTime inicio, DateTime fim)
     {
-        var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, inicio, fim);
+        var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, inicio, fim, "user");
         return View(dados);
     }
     [HttpGet]
     public IActionResult TotalReceitas(DateTime inicio, DateTime fim)
     {
-        var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, inicio, fim);
+        var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, inicio, fim, "user");
         return View(dados);
     }
 
     [HttpGet]
     public IActionResult TotalSaldo()
     {
-        var totalDespesas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, null, null);
-        var totalReceitas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, null, null);
+        var totalDespesas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, null, null, "user");
+        var totalReceitas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, null, null, "user");
         var saldoTotal = totalReceitas - totalDespesas;
         return View(saldoTotal);
     }

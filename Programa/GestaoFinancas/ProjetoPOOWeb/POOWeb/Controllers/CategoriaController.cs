@@ -4,27 +4,28 @@ using System;
 
 namespace POOWeb.Controllers
 {
+    [Route("api/categoria")]
+    [ApiController]
     public class CategoriaController : Controller
     {
 
         // POST: Criar Categoria
-        [HttpPost]
-        public IActionResult CriarCategoria(string nome)
+        [HttpPost("criar")]
+        public IActionResult CriarCategoria([FromBody] string nome)
         {
             try
             {
                 Categoria nova = Categoria.CriarCategoria(nome);
-                ViewBag.Sucesso = "Categoria criada com sucesso!";
+                return Ok(new { mensagem = "Categoria criada com sucesso!" });
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
+                return BadRequest(new { erro = ex.Message });
             }
-
-            return View();
         }
+
         // DELETE: Eliminar categoria
-        [HttpDelete]
+        [HttpDelete("eliminar")]
         public IActionResult Eliminar(string nome)
         {
             bool apagou = Categoria.EliminarCategoria(nome);

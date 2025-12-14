@@ -1,67 +1,68 @@
 using Microsoft.AspNetCore.Mvc;
 using POOWeb.Classes;
+using POOWeb.Models;
 using System;
 using System.Linq;
 
 namespace POOWeb.Controllers
 {
+    [Route("api/conta")]
+    [ApiController]
     public class ContaController : Controller
     {
 
         // POST: Criar Conta
-        [HttpPost]
-        public IActionResult CriarConta(string nome, string email, string password, string tipoConta, string codigoAcesso)
+        [HttpPost("criar")]
+        public IActionResult CriarConta([FromBody] ContaDTO dados)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(nome))
+                if (string.IsNullOrWhiteSpace(dados.Nome))
                     throw new Exception("Nome obrigatório");
-                if (string.IsNullOrWhiteSpace(email))
+                if (string.IsNullOrWhiteSpace(dados.Email))
                     throw new Exception("Email obrigatório");
-                if (string.IsNullOrWhiteSpace(password) || password.Length < 4)
+                if (string.IsNullOrWhiteSpace(dados.Password) || dados.Password.Length < 4)
                     throw new Exception("Password deve ter pelo menos 4 caracteres");
 
                 Random rnd = new Random();
                 int id = rnd.Next(1, 1000000);
 
-                if (tipoConta == "Administrador")
+                if (dados.TipoConta == "Administrador")
                 {
-                    if (string.IsNullOrWhiteSpace(codigoAcesso))
+                    if (string.IsNullOrWhiteSpace(dados.CodigoAcesso))
                         throw new Exception("Código de acesso obrigatório para administrador");
 
-                    var admin = new Administrador(id, nome, email, password, codigoAcesso);
+                    var admin = new Administrador(id, dados.Nome, dados.Email, dados.Password, dados.CodigoAcesso);
                     BaseDados.Utilizadores.Add(admin);
                 }
                 else
                 {
-                    var user = new Utilizador(id, nome, email, password, Utilizador.Perfil.Utilizador);
+                    var user = new Utilizador(id, dados.Nome, dados.Email, dados.Password, Utilizador.Perfil.Utilizador);
                     BaseDados.Utilizadores.Add(user);
                 }
 
-                ViewBag.Mensagem = "Conta criada com sucesso!";
-                return View();
+                return Ok(new { mensagem = "Conta criada com sucesso!" });
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
-                return View();
+                return BadRequest(new { erro = ex.Message });
             }
         }
 
         // POST: Login
-        [HttpPost]
-        public IActionResult Login(string email, string password)
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginDTO dados)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(email))
+                if (string.IsNullOrWhiteSpace(dados.Email))
                     throw new Exception("Email obrigatório");
-                if (string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(dados.Password))
                     throw new Exception("Password obrigatória");
 
                 // Procurar utilizador na lista
                 var utilizador = BaseDados.Utilizadores
-                    .FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password);
+                    .FirstOrDefault(u => u.Email.Equals(dados.Email, StringComparison.OrdinalIgnoreCase) && u.Password == dados.Password);
 
                 if (utilizador == null)
                     throw new Exception("Credenciais inválidas!");
@@ -71,13 +72,11 @@ namespace POOWeb.Controllers
                 HttpContext.Session.SetString("UserNome", utilizador.Nome);
                 HttpContext.Session.SetString("UserPerfil", utilizador.PerfilUsuario.ToString());
 
-                ViewBag.Mensagem = $"Login efetuado com sucesso! Bem-vindo {utilizador.Nome}";
-                return View();
+                return Ok(new {mensagem = $"Login efetuado com sucesso! Bem-vindo {utilizador.Nome}"});
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
-                return View();
+                return BadRequest(new { erro = ex.Message });
             }
         }
     }

@@ -4,26 +4,50 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona serviços MVC (Controllers + Views)
-builder.Services.AddControllersWithViews();
+// Permitir API + JSON
+builder.Services.AddControllers();
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Ativar CORS para permitir pedidos do front-end
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirFrontEnd", policy =>
+    {
+        policy
+            .AllowAnyOrigin()   // Permite qualquer origem (ideal para desenvolvimento)
+            .AllowAnyMethod()   // GET, POST, PUT, DELETE
+            .AllowAnyHeader();  // Content-Type, Authorization, etc.
+    });
+});
 
 var app = builder.Build();
 
-// Configuração do pipeline de middleware
+// Middleware
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error"); // Página de erro personalizada em produção
+    app.UseExceptionHandler("/Home/Error");
 }
-app.UseStaticFiles(); // Permite servir arquivos estáticos (CSS, JS, imagens)
 
-app.UseRouting(); // Define rotas
+app.UseStaticFiles();
 
-app.UseAuthorization(); // Autorização (para autenticação futura, se adicionares Identity)
+// MUITO IMPORTANTE → ativar CORS antes do routing
+app.UseCors("PermitirFrontEnd");
 
-// Define a rota padrão da aplicação
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseRouting();
 
-// Inicia a aplicação
+app.UseSession();
+
+app.UseAuthorization();
+
+// Mapear apenas Controllers (API)
+app.MapControllers();
+
 app.Run();

@@ -33,7 +33,9 @@ namespace POOWeb.Classes
             Despesa
         }
         // Lista global de transações
-        public static List<Transacao> ListaTransacoes = new List<Transacao>();
+        //isto tem que ser um dicionario com a key= utilizador e value=lista transacao
+
+        public static Dictionary<string, List<Transacao>> Transacoes = new Dictionary<string, List<Transacao>>();
 
         public Transacao() { }
 
@@ -55,7 +57,7 @@ namespace POOWeb.Classes
         }
 
         //  MÉTODO PRINCIPAL — CRIA TRANSACAO E PROCURA CATEGORIA
-        public static Transacao CriarTransacao(string descricao, decimal valor, DateTime data, string nomeCategoria, string tipo)
+        public static Transacao CriarTransacao(string descricao, decimal valor, DateTime data, string nomeCategoria, string tipo, string user)
         {
             if (string.IsNullOrWhiteSpace(descricao))
                 throw new Exception("A descrição é obrigatória.");
@@ -90,31 +92,41 @@ namespace POOWeb.Classes
                 (TipoTransacao)Enum.Parse(typeof(TipoTransacao), tipo)
             );
 
-            ListaTransacoes.Add(nova);
+            if (!Transacoes.TryGetValue(user, out var transacoes))
+            {
+                transacoes = new List<Transacao>();
+                Transacoes[user] = transacoes;
+            }
+
+            transacoes.Add(nova);
 
             return nova;
         }
 
         // Apagar transacao
-        public static bool Apagar(int id)
+        public static bool Apagar(int id, string user)
         {
-            Transacao trans = ObterPorId(id);
+            List<Transacao> transacoes = ObterTransacoesUtilizador(user);
+            Transacao trans = ObterPorId(id, transacoes);
 
             if (trans == null)
                 return false;
 
-            ListaTransacoes.Remove(trans);
+            transacoes.Remove(trans);
             return true;
         }
+        
         public static bool Editar(
             int id,
             string novaDescricao,
             decimal novoValor,
             DateTime novaData,
             string nomeCategoria,
-            string tipo)
+            string tipo,
+            string user)
         {
-            Transacao trans = ObterPorId(id);
+            List<Transacao> transacoes = ObterTransacoesUtilizador(user);
+            Transacao trans = ObterPorId(id, transacoes);
 
             if (trans == null)
                 return false;
@@ -142,20 +154,27 @@ namespace POOWeb.Classes
             return true;
         }
         //Obter por ID
-        public static Transacao ObterPorId(int id)
+        public static Transacao ObterPorId(int id, List<Transacao> transacoes)
         {
-            return ListaTransacoes.FirstOrDefault(t => t.Id == id);
+            return transacoes.First(t => t.Id == id);
         }
         // Total por Tipo
-        public static decimal TotalPorTipo(TipoTransacao tipo, DateTime? inicio, DateTime? fim)
+        public static decimal TotalPorTipo(TipoTransacao tipo, DateTime? inicio, DateTime? fim, string user)
         {
-            return ListaTransacoes
+            List<Transacao> transacoes = ObterTransacoesUtilizador(user);
+            return transacoes
                 .Where(t => t.Tipo == tipo &&
                     (!inicio.HasValue || t.Data >= inicio.Value) &&
                     (!fim.HasValue || t.Data <= fim.Value))
                 .Sum(t => t.Valor);
         }
-
-
+        public static List<Transacao> ObterTransacoesUtilizador(string user)
+        {
+            if (!Transacoes.TryGetValue(user, out var transacoes))
+            {
+                throw new KeyNotFoundException($"O utilizador não tem transações.");
+            }
+            return transacoes;
+        }
     }
 }

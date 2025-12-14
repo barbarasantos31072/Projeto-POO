@@ -1,66 +1,85 @@
 using Microsoft.AspNetCore.Mvc;
 using POOWeb.Classes;
+using POOWeb.Models;
 using System;
 
 namespace POOWeb.Controllers
 {
+    [Route("api/transacoes")]
+    [ApiController]
     public class TransacaoController : Controller
     {
         //GET: Listar Transações
-        [HttpGet]
-        public IActionResult Lista() => View(Transacao.ListaTransacoes);
-
-        //POST: Criar Transacao
-        [HttpPost]
-        public IActionResult CriarTransacao(string descricao, decimal valor, DateTime data, string categoria, string tipo)
+        [HttpGet("listartransacoes")]
+        public IActionResult Lista()
         {
             try
             {
-                Transacao.CriarTransacao(descricao, valor, data, categoria, tipo);
-                ViewBag.Sucesso = "Transação criada com sucesso!";
+                var transacoes = Transacao.ObterTransacoesUtilizador("user");
+
+                return Ok(transacoes);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { erro = ex.Message });
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
+                return BadRequest(new { erro = ex.Message });
             }
+        }
 
-            return View();
+        //POST: Criar Transacao
+        [HttpPost("criartransacao")]
+        public IActionResult CriarTransacao([FromBody] TransacaoDTO dados)
+        {
+            try
+            {
+                Transacao.CriarTransacao(dados.Descricao, dados.Valor, dados.Data, dados.Categoria, dados.Tipo, "user");
+                return Ok(new { mensagem = "Transação criada com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
         }
 
         //PUT: Editar Transacao
-
-        [HttpPut]
-        public IActionResult Editar(int id, string descricao, decimal valor, DateTime data, string categoria, string tipo)
+        [HttpPut("editartansacao")]
+        public IActionResult Editar(int id, [FromBody] TransacaoDTO dados)
         {
             try
             {
-                bool ok = Transacao.Editar(id, descricao, valor, data, categoria, tipo);
+                bool ok = Transacao.Editar(id, dados.Descricao, dados.Valor, dados.Data, dados.Categoria, dados.Tipo, "user");
 
-                if (ok)
-                    return RedirectToAction("Lista");
+                if (!ok)
+                    return NotFound(new { erro = "Transação não encontrada." });
 
-                ViewBag.Erro = "Transação não encontrada.";
+                return Ok(new { mensagem = "Transação atualizada com sucesso!" });
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
+                return BadRequest(new { erro = ex.Message });
             }
-
-            return View(Transacao.ObterPorId(id));
         }
 
         //DELETE: Eliminar Transacao
-        [HttpDelete]
+        [HttpDelete("eliminartransacao")]
         public IActionResult Apagar(int id)
         {
-            bool apagou = Transacao.Apagar(id);
+            try
+            {
+                bool apagou = Transacao.Apagar(id, "user");
 
-            if (!apagou)
-                ViewBag.Erro = "Transação não encontrada.";
-            else
-                ViewBag.Sucesso = "Transação apagada com sucesso!";
+                if (!apagou)
+                    return NotFound(new { erro = "Transação não encontrada." });
 
-            return RedirectToAction("Lista");
+                return Ok(new { mensagem = "Transação apagada com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
         }
     }
 }
