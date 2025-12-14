@@ -1,10 +1,7 @@
 
 // BASE DE DADOS E PERFIS
 
-const BaseDados = {
-    Utilizadores: JSON.parse(localStorage.getItem("Utilizadores")) || []
-};
-
+BaseDados.Utilizadores = BaseDados.Utilizadores || [];
 const Perfis = {
     Administrador: "Administrador",
     Utilizador: "Utilizador"
