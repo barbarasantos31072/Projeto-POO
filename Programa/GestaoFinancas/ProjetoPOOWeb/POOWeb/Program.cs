@@ -45,8 +45,6 @@ app.UseRouting();
 
 app.UseSession();
 
-app.UseAuthorization();
-
 // Mapear apenas Controllers (API)
 app.MapControllers();
 
