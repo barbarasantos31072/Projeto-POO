@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using POOWeb.Classes;
+using POOWeb.Models;
 using System;
 
 namespace POOWeb.Controllers
@@ -11,11 +12,11 @@ namespace POOWeb.Controllers
 
         // POST: Criar Categoria
         [HttpPost("criar")]
-        public IActionResult CriarCategoria([FromBody] string nome)
+        public IActionResult CriarCategoria([FromBody] CategoriaDTO dados)
         {
             try
             {
-                Categoria nova = Categoria.CriarCategoria(nome);
+                Categoria nova = Categoria.CriarCategoria(dados.Nome);
                 return Ok(new { mensagem = "Categoria criada com sucesso!" });
             }
             catch (Exception ex)
@@ -25,25 +26,23 @@ namespace POOWeb.Controllers
         }
 
         // DELETE: Eliminar categoria
-        [HttpDelete("eliminar")]
+        [HttpDelete("eliminar/{nome}")]
         public IActionResult Eliminar(string nome)
         {
             bool apagou = Categoria.EliminarCategoria(nome);
 
             if (!apagou)
-                ViewBag.Erro = "Categoria não encontrada.";
+                return NotFound(new { mensagem = "Categoria não encontrada!" });
             else
-                ViewBag.Sucesso = "Categoria apagada com sucesso!";
-
-            return RedirectToAction("Lista");
+                return Ok(new { mensagem = "Categoria apagada com sucesso!" });
         }
 
         // GET: listar categorias
 
-        [HttpGet]
+        [HttpGet("listar")]
         public IActionResult Lista()
         {
-            return View(Categoria.ListaCategorias);
+            return Ok(Categoria.ListaCategorias);
         }
     }
 }
