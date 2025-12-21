@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Página Relatório</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Relatório</h1>
+
+        <h3>Saldo total: <span id="saldo">0 €</span></h3>
+
+
+        <hr>
+
+        <h3>Filtrar por período</h3>
+        <h3>Total receitas: <span id="totalReceitas">0 €</span></h3>
+        <h3>Total despesas: <span id="totalDespesas">0 €</span></h3>
+        <input type="date" id="inicio">
+        <input type="date" id="fim">
+        <button id="filtrar">Filtrar</button>
+
+        <hr>
+
+        <h3>Por categoria:</h3>
+        <ul id="porCategoria"></ul>
+    </div>
+
+    <script src="js/relatorios.js"></script>
+</body>
+
+</html> 
