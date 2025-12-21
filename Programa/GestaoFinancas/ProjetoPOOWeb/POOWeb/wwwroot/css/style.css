@@ -62,22 +62,18 @@ margin: 5px;
 button,
 .btn-add,
 .btn-conta {
-width: 100%;
-padding: 14px;
 background: #0078d7;
 color: white;
-font-size: 18px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
+display: inline-block;
+width:200px;
+padding: 12px 0;
+font-size: 20px;
+font-weight: bold;
+border-radius: 6px;
+border: 1px solid #005caa;
 text-decoration: none;
 }
 
-button:hover,
-.btn-add:hover,
-.btn-conta:hover {
-background: #005caa;
-}
 
 .blue-button {
 background: #0078d7;
@@ -156,18 +152,67 @@ cursor: pointer;
 }
 
 #signupForm button {
-    width: 200px;
-    padding: 12px;
-    background: #0078d7;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border: 1px solid #005caa;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px auto;
-    display: block; 
+  width: 200px;
+  padding: 12px;
+  background: #0078d7;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #005caa;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block; 
 }
+
+#criarcategoriaForm input {
+  display: block;
+  width: 220px;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#criarcategoriaForm button {
+  width: 200px;
+  padding: 12px;
+  background: #0078d7;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #005caa;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block; 
+}
+
+#criartransacaoForm input {
+  display: block;
+  width: 220px;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#criartransacaoForm button {
+  width: 200px;
+  padding: 12px;
+  background: #0078d7;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #005caa;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block; 
+}
+
 /*DESPESAS E LISTAGENS*/
 
 .tabela-container {
