@@ -32,7 +32,21 @@ namespace POOWeb.Controllers
         }
 
         //POST: Criar Transacao
-        
+        [HttpPost("criartransacao")]
+        public IActionResult CriarTransacao([FromBody] TransacaoDTO dados)
+        {
+            
+            try
+            {
+                string user = HttpContext.Session.GetString("UserNome");
+                Transacao.CriarTransacao(dados.Descricao, dados.Valor, dados.Data, dados.Categoria, dados.Tipo, user);
+                return Ok(new { mensagem = "Transação criada com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+        }
 
         //PUT: Editar Transacao
         [HttpPut("editartansacao")]
