@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.IO;
+using System.Text.Json;
 
 namespace POOWeb.Classes
 {
     public class Categoria
     {
+
+        private static readonly string ficheiro = "Data/categorias.json";
         // Propriedades
 
         public int Id { get; set; }
@@ -38,6 +42,7 @@ namespace POOWeb.Classes
             int id = GerarId();
             Categoria nova = new Categoria(id, nome);
             ListaCategorias.Add(nova);
+            GuardarDados();
             return nova;
         }
         //Eliminar Categoria
@@ -49,12 +54,46 @@ namespace POOWeb.Classes
                 return false;
 
             ListaCategorias.Remove(categoria);
+            GuardarDados();
             return true;
         }
         public static Categoria ObterPorNome(string nome)
         {
             return Categoria.ListaCategorias
                 .FirstOrDefault(c => c.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase), null);
+        }
+
+        // Guardar categorias no ficheiro JSON
+        public static void GuardarDados()
+        {
+            string pasta = Path.GetDirectoryName(ficheiro);
+            if (!Directory.Exists(pasta))
+                Directory.CreateDirectory(pasta);
+
+            string json = JsonSerializer.Serialize(ListaCategorias, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(ficheiro, json);
+        }
+
+        // Carregar categorias do ficheiro JSON
+        public static void CarregarDados()
+        {
+            if (!File.Exists(ficheiro))
+                return;
+
+            string json = File.ReadAllText(ficheiro);
+
+            try
+            {
+                ListaCategorias = JsonSerializer.Deserialize<List<Categoria>>(json) ?? new List<Categoria>();
+            }
+            catch
+            {
+                ListaCategorias = new List<Categoria>();
+            }
         }
     }
 }

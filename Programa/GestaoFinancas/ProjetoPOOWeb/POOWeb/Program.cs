@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using POOWeb.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,7 +46,14 @@ app.UseRouting();
 
 app.UseSession();
 
+
 // Mapear apenas Controllers (API)
 app.MapControllers();
+
+
+// Carregar dados
+BaseDados.CarregarContas();
+Categoria.CarregarDados();
+Transacao.CarregarDados();
 
 app.Run();

@@ -40,7 +40,7 @@ namespace POOWeb.Controllers
                     var user = new Utilizador(id, dados.Nome, dados.Email, dados.Password, Utilizador.Perfil.Utilizador);
                     BaseDados.Utilizadores.Add(user);
                 }
-
+                BaseDados.GuardarContas();
                 return Ok(new { mensagem = "Conta criada com sucesso!" });
             }
             catch (Exception ex)

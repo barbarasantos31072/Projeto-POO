@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.IO;
+using System.Text.Json;
 
 namespace POOWeb.Classes
 {
@@ -32,11 +34,10 @@ namespace POOWeb.Classes
             Receita,
             Despesa
         }
-        // Lista global de transações
-        //isto tem que ser um dicionario com a key= utilizador e value=lista transacao
 
         public static Dictionary<string, List<Transacao>> Transacoes = new Dictionary<string, List<Transacao>>();
 
+        private static readonly string ficheiro = "Data/transacoes.json";
         public Transacao() { }
 
         public Transacao(int id, string descricao, decimal valor, DateTime data, Categoria categoria, TipoTransacao tipo)
@@ -56,7 +57,41 @@ namespace POOWeb.Classes
             return rnd.Next(1, 9999999);
         }
 
-        //  MÉTODO PRINCIPAL — CRIA TRANSACAO E PROCURA CATEGORIA
+        // Persistência de dados
+        private static void GuardarDados()
+        {
+            string pasta = Path.GetDirectoryName(ficheiro);
+            if (!Directory.Exists(pasta))
+                Directory.CreateDirectory(pasta);
+
+            string json = JsonSerializer.Serialize(Transacoes, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
+            });
+
+            File.WriteAllText(ficheiro, json);
+        }
+
+        public static void CarregarDados()
+        {
+            if (!File.Exists(ficheiro))
+                return;
+
+            string json = File.ReadAllText(ficheiro);
+
+            try
+            {
+                Transacoes = JsonSerializer.Deserialize<Dictionary<string, List<Transacao>>>(json)
+                    ?? new Dictionary<string, List<Transacao>>();
+            }
+            catch
+            {
+                Transacoes = new Dictionary<string, List<Transacao>>();
+            }
+        }
+
+        //  CRUD
         public static Transacao CriarTransacao(string descricao, decimal valor, DateTime data, string nomeCategoria, string tipo, string user)
         {
             if (string.IsNullOrWhiteSpace(descricao))
@@ -99,7 +134,7 @@ namespace POOWeb.Classes
             }
 
             transacoes.Add(nova);
-
+            GuardarDados();
             return nova;
         }
 
@@ -113,9 +148,10 @@ namespace POOWeb.Classes
                 return false;
 
             transacoes.Remove(trans);
+            GuardarDados();
             return true;
         }
-        
+
         public static bool Editar(
             int id,
             string novaDescricao,
@@ -151,12 +187,13 @@ namespace POOWeb.Classes
             trans.Categoria = cat;
             trans.Tipo = (TipoTransacao)Enum.Parse(typeof(TipoTransacao), tipo, true);
 
+            GuardarDados();
             return true;
         }
         //Obter por ID
         public static Transacao ObterPorId(int id, List<Transacao> transacoes)
         {
-            return transacoes.First(t => t.Id == id);
+            return transacoes.FirstOrDefault(t => t.Id == id);
         }
         // Total por Tipo
         public static decimal TotalPorTipo(TipoTransacao tipo, DateTime? inicio, DateTime? fim, string user)
@@ -170,11 +207,17 @@ namespace POOWeb.Classes
         }
         public static List<Transacao> ObterTransacoesUtilizador(string user)
         {
+            if (Transacoes.Count == 0)
+                CarregarDados();
+
             if (!Transacoes.TryGetValue(user, out var transacoes))
             {
-                throw new KeyNotFoundException($"O utilizador não tem transações.");
+                transacoes = new List<Transacao>();
+                Transacoes[user] = transacoes;
             }
+
             return transacoes;
         }
     }
+
 }
