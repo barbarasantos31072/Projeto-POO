@@ -188,6 +188,31 @@ cursor: pointer;
   margin: 10px auto;
   display: block; 
 }
+
+#criartransacaoForm input {
+  display: block;
+  width: 220px;
+  padding: 12px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#criartransacaoForm button {
+  width: 200px;
+  padding: 12px;
+  background: #0078d7;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #005caa;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block; 
+}
+
 /*DESPESAS E LISTAGENS*/
 
 .tabela-container {
