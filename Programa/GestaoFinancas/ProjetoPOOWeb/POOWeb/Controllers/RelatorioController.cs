@@ -36,53 +36,73 @@ namespace POOWeb.Controllers
         }
 
         [HttpGet("despesas")]
-        public IActionResult TotalDespesas([FromQuery] DateTime inicio, [FromQuery] DateTime fim)
-        {
-            try
-            {
-                string user = HttpContext.Session.GetString("UserNome");
-                var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, inicio, fim, user);
-                return Ok(dados);
-            }
+public IActionResult TotalDespesas([FromQuery] DateTime inicio, [FromQuery] DateTime fim)
+{
+    try
+    {
+        string user = HttpContext.Session.GetString("UserNome");
 
-            catch (Exception ex)
-            {
-                return BadRequest(new { erro = ex.Message });
-            }
-        }
+        var total = Transacao.ObterTransacoesUtilizador(user)
+            .Where(t => t.Tipo == Transacao.TipoTransacao.Despesa
+                     && t.Data >= inicio
+                     && t.Data <= fim)
+            .Sum(t => t.Valor);
 
-        [HttpGet("receitas")]
-        public IActionResult TotalReceitas([FromQuery] DateTime inicio, [FromQuery] DateTime fim)
-        {
-            try
-            {
-                string user = HttpContext.Session.GetString("UserNome");
-                var dados = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, inicio, fim, user);
-                return Ok(dados);
-            }
-
-            catch (Exception ex)
-            {
-                return BadRequest(new { erro = ex.Message });
-            }
-        }
-
-        [HttpGet("saldo")]
-        public IActionResult TotalSaldo()
-        {
-            try
-            {
-                string user = HttpContext.Session.GetString("UserNome");
-                var totalDespesas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Despesa, null, null, user);
-                var totalReceitas = Transacao.TotalPorTipo(Transacao.TipoTransacao.Receita, null, null, user);
-                var saldoTotal = totalReceitas - totalDespesas;
-                return Ok(saldoTotal);
-            }
-
-            catch (Exception ex)
-            {
-                return BadRequest(new { erro = ex.Message });
-            }
-        }
+        return Ok(total);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { erro = ex.Message });
     }
 }
+
+
+       [HttpGet("receitas")]
+public IActionResult TotalReceitas([FromQuery] DateTime inicio, [FromQuery] DateTime fim)
+{
+    try
+    {
+        string user = HttpContext.Session.GetString("UserNome");
+
+        var total = Transacao.ObterTransacoesUtilizador(user)
+            .Where(t => t.Tipo == Transacao.TipoTransacao.Receita
+                     && t.Data >= inicio
+                     && t.Data <= fim)
+            .Sum(t => t.Valor);
+
+        return Ok(total);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { erro = ex.Message });
+    }
+}
+
+
+      [HttpGet("saldo")]
+public IActionResult TotalSaldo()
+{
+    try
+    {
+        string user = HttpContext.Session.GetString("UserNome");
+
+        var transacoes = Transacao.ObterTransacoesUtilizador(user);
+
+        var totalReceitas = transacoes
+            .Where(t => t.Tipo == Transacao.TipoTransacao.Receita)
+            .Sum(t => t.Valor);
+
+        var totalDespesas = transacoes
+            .Where(t => t.Tipo == Transacao.TipoTransacao.Despesa)
+            .Sum(t => t.Valor);
+
+        var saldo = totalReceitas - totalDespesas;
+
+        return Ok(saldo);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { erro = ex.Message });
+    }
+}
+
