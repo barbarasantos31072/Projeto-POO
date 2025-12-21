@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.IO;
+using System.Text.Json;
 
 namespace POOWeb.Classes
 {
     public class Categoria
     {
+        private static readonly string ficheiro = "Data/categorias.json";
         // Propriedades
-
+        
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome da categoria é obrigatório.")]
@@ -38,6 +41,7 @@ namespace POOWeb.Classes
             int id = GerarId();
             Categoria nova = new Categoria(id, nome);
             ListaCategorias.Add(nova);
+            GuardarCategorias();
             return nova;
         }
         //Eliminar Categoria
@@ -49,6 +53,7 @@ namespace POOWeb.Classes
                 return false;
 
             ListaCategorias.Remove(categoria);
+            GuardarCategorias();
             return true;
         }
         public static Categoria ObterPorNome(string nome)
@@ -56,5 +61,37 @@ namespace POOWeb.Classes
             return Categoria.ListaCategorias
                 .FirstOrDefault(c => c.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase), null);
         }
+        public static void GuardarCategorias()
+        {
+            string pasta = Path.GetDirectoryName(ficheiro);
+            if (!Directory.Exists(pasta))
+                Directory.CreateDirectory(pasta);
+
+            string json = JsonSerializer.Serialize(ListaCategorias, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(ficheiro, json);
+        }
+
+        public static void CarregarCategorias()
+        {
+            if (!File.Exists(ficheiro))
+                return;
+
+            string json = File.ReadAllText(ficheiro);
+
+            try
+            {
+                ListaCategorias = JsonSerializer.Deserialize<List<Categoria>>(json)
+                    ?? new List<Categoria>();
+            }
+            catch
+            {
+                ListaCategorias = new List<Categoria>();
+            }
+        }
     }
 }
+
