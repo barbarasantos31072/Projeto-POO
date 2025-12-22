@@ -1,0 +1,25 @@
+@startuml
+actor Utilizador
+participant SistemaGestaoFinancas
+participant Transacao
+participant Categoria
+
+== Processo de Editar Transacao ==
+Utilizador -> SistemaGestaoFinancas : EditarTransacao(id, novaDescricao, ...)
+activate SistemaGestaoFinancas
+
+SistemaGestaoFinancas -> Transacao : ObterTransacoesUtilizador(user)
+activate Transacao
+Transacao -> Transacao : ObterPorId(id)
+Transacao --> SistemaGestaoFinancas : transacaoEncontrada
+deactivate Transacao
+
+SistemaGestaoFinancas -> Categoria : ObterPorNome(novaCategoria)
+activate Categoria
+Categoria --> SistemaGestaoFinancas : categoriaExistente
+deactivate Categoria
+
+SistemaGestaoFinancas -> Transacao : Atualizar campos
+Transacao --> SistemaGestaoFinancas : Transacao editada com sucesso
+deactivate SistemaGestaoFinancas
+@enduml

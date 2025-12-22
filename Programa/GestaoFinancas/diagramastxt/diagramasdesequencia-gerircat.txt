@@ -1,0 +1,26 @@
+@startuml
+actor Administrador
+participant SistemaGestaoFinancas
+participant Categoria
+
+== Criar Categoria ==
+Administrador -> SistemaGestaoFinancas : CriarCategoria(nome)
+activate SistemaGestaoFinancas
+
+SistemaGestaoFinancas -> Categoria : CriarCategoria(nome)
+activate Categoria
+Categoria -> Categoria : GerarId()
+Categoria --> SistemaGestaoFinancas : Categoria criada
+deactivate Categoria
+
+SistemaGestaoFinancas --> Administrador : Categoria criada com sucesso
+deactivate SistemaGestaoFinancas
+
+== Eliminar Categoria ==
+Administrador -> SistemaGestaoFinancas : EliminarCategoria(nome)
+activate SistemaGestaoFinancas
+SistemaGestaoFinancas -> Categoria : EliminarCategoria(nome)
+Categoria --> SistemaGestaoFinancas : Resultado
+SistemaGestaoFinancas --> Administrador : Categoria eliminada
+deactivate SistemaGestaoFinancas
+@enduml

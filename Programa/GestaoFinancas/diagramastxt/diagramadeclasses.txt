@@ -1,0 +1,83 @@
+@startuml
+
+class BaseDados <<static>> {
+  {static} Utilizadores : List<Utilizador>
+  {static} UtilizadorAtual : Utilizador
+}
+
+class Utilizador {
+  +Id : int
+  +Nome : string
+  +Email : string
+  +Password : string
+  +PerfilUsuario : Perfil
+
+  +Utilizador()
+  +Utilizador(id : int, nome : string, email : string, password : string, perfil : Perfil)
+
+  {static} GerarId() : int
+}
+
+class Administrador {
+  +CodigoAcesso : string
+
+  +Administrador()
+  +Administrador(id : int, nome : string, email : string, password : string, codigoAcesso : string)
+}
+
+enum Perfil {
+  Utilizador
+  Administrador
+}
+
+class Categoria {
+  -ficheiro : string
+  -rnd : Random
+
+  +Id : int
+  +Nome : string
+
+  {static} ListaCategorias : List<Categoria>
+
+  +Categoria(id : int, nomecat : string)
+
+  {static} GerarId() : int
+  {static} CriarCategoria(nome : string) : Categoria
+  {static} EliminarCategoria(nome : string) : bool
+  {static} ObterPorNome(nome : string) : Categoria
+  {static} GuardarCategorias() : void
+  {static} CarregarCategorias() : void
+}
+
+class Transacao {
+  +Id : int
+  +Descricao : string
+  +Valor : decimal
+  +Data : DateTime
+  +Tipo : TipoTransacao
+
+  +Transacao()
+  +Transacao(id : int, descricao : string, valor : decimal, data : DateTime, categoria : Categoria, tipo : TipoTransacao)
+
+  {static} CriarTransacao(...) : Transacao
+  {static} Apagar(id : int, user : string) : bool
+  {static} Editar(...) : bool
+  {static} TotalPorTipo(...) : decimal
+}
+
+enum TipoTransacao {
+  Receita
+  Despesa
+}
+
+Administrador --|> Utilizador
+Utilizador --> Perfil : possui
+Utilizador "1" --> "0..*" Transacao : realiza
+Transacao --> Categoria : pertence
+Transacao --> TipoTransacao : tipo
+BaseDados --> "0..*" Utilizador : armazena
+BaseDados --> "1" Utilizador : utilizador atual
+
+@enduml
+
+

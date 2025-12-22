@@ -1,0 +1,26 @@
+@startuml
+actor Utilizador
+participant SistemaGestaoFinancas
+participant Transacao
+participant Categoria
+participant BaseDados
+
+== Processo de Criar Transacao ==
+Utilizador -> SistemaGestaoFinancas : CriarTransacao(descricao, valor, data, categoria, tipo)
+activate SistemaGestaoFinancas
+
+SistemaGestaoFinancas -> Categoria : ObterPorNome(categoria)
+activate Categoria
+Categoria --> SistemaGestaoFinancas : categoriaExistente
+deactivate Categoria
+
+SistemaGestaoFinancas -> Transacao : CriarTransacao(...)
+activate Transacao
+Transacao -> Categoria : Validar categoria
+Transacao -> BaseDados : ObterTransacoesUtilizador(user)
+Transacao --> SistemaGestaoFinancas : Transacao criada
+deactivate Transacao
+
+SistemaGestaoFinancas --> Utilizador : Transacao criada com sucesso
+deactivate SistemaGestaoFinancas
+@enduml

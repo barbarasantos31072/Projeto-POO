@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+
+actor Utilizador
+actor Administrador
+
+rectangle "Gestão de Finanças" {
+
+  usecase "Criar transação" as UC1
+  usecase "Editar transação" as UC2
+  usecase "Eliminar transação" as UC3
+  usecase "Consultar transações" as UC4
+  usecase "Calcular totais" as UC5
+
+  usecase "Validar dados da transação" as UC6
+
+  usecase "Gerir utilizadores" as UC7
+  usecase "Criar categorias" as UC8
+  usecase "Eliminar categorias" as UC9
+
+  usecase "Gerar relatórios" as UC10
+
+  Utilizador --> UC1
+  Utilizador --> UC2
+  Utilizador --> UC3
+  Utilizador --> UC4
+  Utilizador --> UC5
+  Utilizador --> UC10
+
+  Administrador --> UC7
+  Administrador --> UC8
+  Administrador --> UC9
+
+  UC1 --> UC6 : <<include>>
+  UC2 --> UC6 : <<include>>
+}
+@enduml

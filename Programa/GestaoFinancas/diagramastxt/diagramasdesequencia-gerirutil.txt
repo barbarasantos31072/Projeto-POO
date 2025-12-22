@@ -1,0 +1,23 @@
+@startuml
+actor Administrador
+participant SistemaGestaoFinancas
+participant BaseDados
+participant Utilizador
+
+== Criar/Adicionar Utilizador ==
+Administrador -> SistemaGestaoFinancas : CriarUtilizador(nome, email, password, perfil)
+activate SistemaGestaoFinancas
+
+SistemaGestaoFinancas -> BaseDados : Adicionar Utilizador
+BaseDados --> SistemaGestaoFinancas : Confirmação
+SistemaGestaoFinancas --> Administrador : Utilizador criado com sucesso
+deactivate SistemaGestaoFinancas
+
+== Editar/Remover Utilizador ==
+Administrador -> SistemaGestaoFinancas : RemoverUtilizador(id)
+activate SistemaGestaoFinancas
+SistemaGestaoFinancas -> BaseDados : Remover Utilizador
+BaseDados --> SistemaGestaoFinancas : Confirmação
+SistemaGestaoFinancas --> Administrador : Utilizador removido
+deactivate SistemaGestaoFinancas
+@enduml
